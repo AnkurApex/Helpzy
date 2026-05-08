@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { openDb, hashPassword } from '@/lib/db';
+import { openDb, hashPassword, dbGet } from '@/lib/db';
 import { cookies } from 'next/headers';
 
-// In-memory session store (fine for development)
+// In-memory session store
 const sessions = new Map();
 
 function createSession(userId, role, name) {
@@ -15,7 +15,6 @@ function getSession(token) {
   if (!token) return null;
   const session = sessions.get(token);
   if (!session) return null;
-  // Expire after 7 days
   if (Date.now() - session.createdAt > 7 * 24 * 60 * 60 * 1000) {
     sessions.delete(token);
     return null;
@@ -38,22 +37,21 @@ export async function POST(request) {
       if (password.length < 6) {
         return NextResponse.json({ error: 'Password must be at least 6 characters.' }, { status: 400 });
       }
-      const existing = await db.get('SELECT id FROM users WHERE email = ?', [email.toLowerCase()]);
+      const existing = await db.get('SELECT id FROM users WHERE email = $1', [email.toLowerCase()]);
       if (existing) {
         return NextResponse.json({ error: 'An account with this email already exists.' }, { status: 409 });
       }
       const hashed = hashPassword(password);
-      const result = await db.run(
-        'INSERT INTO users (name, email, password, phone, role, city, pincode) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      const newUser = await dbGet(
+        'INSERT INTO users (name, email, password, phone, role, city, pincode) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING id',
         [name.trim(), email.toLowerCase().trim(), hashed, phone || null, role || 'customer', city || null, pincode || null]
       );
-      const userId = result.lastID;
+      const userId = newUser.id;
 
-      // If registering as provider, create a provider entry
       if (role === 'provider' && body.category) {
         const slug = name.toLowerCase().replace(/\s+/g, '-') + '-' + userId;
         await db.run(
-          'INSERT INTO providers (user_id, business_name, slug, category, city, pincode, status) VALUES (?, ?, ?, ?, ?, ?, ?)',
+          'INSERT INTO providers (user_id, business_name, slug, category, city, pincode, status) VALUES ($1,$2,$3,$4,$5,$6,$7)',
           [userId, name, slug, body.category, city || '', pincode || '', 'pending']
         );
       }
@@ -73,7 +71,7 @@ export async function POST(request) {
       if (!email || !password) {
         return NextResponse.json({ error: 'Email and password are required.' }, { status: 400 });
       }
-      const user = await db.get('SELECT * FROM users WHERE email = ?', [email.toLowerCase().trim()]);
+      const user = await db.get('SELECT * FROM users WHERE email = $1', [email.toLowerCase().trim()]);
       if (!user) {
         return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 });
       }
@@ -81,7 +79,6 @@ export async function POST(request) {
         return NextResponse.json({ error: 'Your account has been blocked. Please contact support.' }, { status: 403 });
       }
       const hashed = hashPassword(password);
-      // Support plain text legacy passwords for demo accounts
       if (user.password !== hashed && user.password !== password) {
         return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 });
       }
@@ -118,12 +115,11 @@ export async function GET() {
     const session = getSession(token);
     if (!session) return NextResponse.json({ user: null });
     const db = await openDb();
-    const user = await db.get('SELECT id, name, email, phone, role, city, pincode, address, state FROM users WHERE id = ?', [session.userId]);
+    const user = await db.get('SELECT id, name, email, phone, role, city, pincode, address, state FROM users WHERE id = $1', [session.userId]);
     if (!user) return NextResponse.json({ user: null });
 
-    // If provider, also get provider ID
     if (user.role === 'provider') {
-      const provider = await db.get('SELECT id, status, is_verified, category FROM providers WHERE user_id = ?', [user.id]);
+      const provider = await db.get('SELECT id, status, is_verified, category FROM providers WHERE user_id = $1', [user.id]);
       return NextResponse.json({ user: { ...user, provider } });
     }
 
@@ -134,5 +130,4 @@ export async function GET() {
   }
 }
 
-// Export getSession for use in other routes
 export { getSession };

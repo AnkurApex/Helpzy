@@ -1,60 +1,156 @@
-<svg width="900" height="200" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280" width="1200" height="280">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#052e16;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#14532d;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#052e16;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#0a0a10"/>
+      <stop offset="100%" style="stop-color:#111318"/>
     </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#a3e635;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#65a30d;stop-opacity:1" />
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="45%" style="stop-color:#fb923c"/>
+      <stop offset="100%" style="stop-color:#fbbf24"/>
+    </linearGradient>
+    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0"/>
+      <stop offset="30%" style="stop-color:#f97316;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#fbbf24;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="houseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#ea580c"/>
     </linearGradient>
     <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
       <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#f97316" flood-opacity="0.15"/>
     </filter>
   </defs>
 
   <!-- Background -->
-  <rect width="900" height="200" fill="url(#bg)" rx="12"/>
+  <rect width="1200" height="280" fill="url(#bg)" rx="14"/>
 
-  <!-- Decorative circles -->
-  <circle cx="820" cy="40"  r="80" fill="#a3e635" opacity="0.04"/>
-  <circle cx="80"  cy="160" r="100" fill="#a3e635" opacity="0.05"/>
-  <circle cx="450" cy="100" r="200" fill="#16a34a" opacity="0.03"/>
+  <!-- Subtle dot grid pattern -->
+  <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="0.8" fill="#ffffff" opacity="0.04"/>
+  </pattern>
+  <rect width="1200" height="280" fill="url(#dots)" rx="14"/>
 
-  <!-- Vertical accent bar -->
-  <rect x="56" y="44" width="5" height="112" fill="url(#accent)" rx="3"/>
+  <!-- Right-side decorative service cards cluster -->
+  <!-- Card 1 - Electrician -->
+  <rect x="800" y="35" width="140" height="52" rx="10" fill="#1a1a24" stroke="#f97316" stroke-width="1" opacity="0.85" filter="url(#cardShadow)"/>
+  <text x="820" y="57" font-family="'Segoe UI',Arial,sans-serif" font-size="18" fill="#f97316">⚡</text>
+  <text x="845" y="57" font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="600" fill="#f1f5f9">Electrician</text>
+  <text x="845" y="75" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#64748b">Wiring · Repair · Safety</text>
 
-  <!-- HELPZY wordmark -->
-  <text x="78" y="110" font-family="Arial Black, Arial, sans-serif" font-size="68" font-weight="900"
-        font-style="italic" letter-spacing="-2" fill="url(#accent)" filter="url(#glow)">HELPZY</text>
+  <!-- Card 2 - Plumber -->
+  <rect x="960" y="28" width="140" height="52" rx="10" fill="#1a1a24" stroke="#3b82f6" stroke-width="1" opacity="0.85" filter="url(#cardShadow)"/>
+  <text x="980" y="50" font-family="'Segoe UI',Arial,sans-serif" font-size="18" fill="#3b82f6">🔧</text>
+  <text x="1005" y="50" font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="600" fill="#f1f5f9">Plumber</text>
+  <text x="1005" y="68" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#64748b">Pipes · Leaks · Fixtures</text>
+
+  <!-- Card 3 - AC Repair -->
+  <rect x="870" y="105" width="140" height="52" rx="10" fill="#1a1a24" stroke="#06b6d4" stroke-width="1" opacity="0.85" filter="url(#cardShadow)"/>
+  <text x="890" y="127" font-family="'Segoe UI',Arial,sans-serif" font-size="18" fill="#06b6d4">❄️</text>
+  <text x="915" y="127" font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="600" fill="#f1f5f9">AC Repair</text>
+  <text x="915" y="145" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#64748b">Service · Gas · Install</text>
+
+  <!-- Card 4 - Cleaner -->
+  <rect x="1020" y="100" width="140" height="52" rx="10" fill="#1a1a24" stroke="#22c55e" stroke-width="1" opacity="0.85" filter="url(#cardShadow)"/>
+  <text x="1040" y="122" font-family="'Segoe UI',Arial,sans-serif" font-size="18" fill="#22c55e">🧹</text>
+  <text x="1065" y="122" font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="600" fill="#f1f5f9">Cleaner</text>
+  <text x="1065" y="140" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#64748b">Home · Deep · Office</text>
+
+  <!-- Card 5 - Painter -->
+  <rect x="810" y="175" width="130" height="52" rx="10" fill="#1a1a24" stroke="#a855f7" stroke-width="1" opacity="0.85" filter="url(#cardShadow)"/>
+  <text x="828" y="197" font-family="'Segoe UI',Arial,sans-serif" font-size="18" fill="#a855f7">🎨</text>
+  <text x="853" y="197" font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="600" fill="#f1f5f9">Painter</text>
+  <text x="853" y="215" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#64748b">Interior · Exterior</text>
+
+  <!-- Card 6 - Carpenter -->
+  <rect x="960" y="170" width="140" height="52" rx="10" fill="#1a1a24" stroke="#f59e0b" stroke-width="1" opacity="0.85" filter="url(#cardShadow)"/>
+  <text x="978" y="192" font-family="'Segoe UI',Arial,sans-serif" font-size="18" fill="#f59e0b">🪚</text>
+  <text x="1003" y="192" font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="600" fill="#f1f5f9">Carpenter</text>
+  <text x="1003" y="210" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#64748b">Furniture · Doors</text>
+
+  <!-- Connector lines between cards (decorative) -->
+  <line x1="870" y1="61" x2="960" y2="54" stroke="#f97316" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.3"/>
+  <line x1="940" y1="87" x2="870" y2="105" stroke="#3b82f6" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.3"/>
+  <line x1="1010" y1="131" x2="960" y2="152" stroke="#06b6d4" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.25"/>
+
+  <!-- LEFT: House icon -->
+  <g transform="translate(52, 68)" filter="url(#glow)">
+    <!-- Roof -->
+    <polygon points="75,0 148,62 2,62" fill="url(#houseGrad)" opacity="0.95"/>
+    <!-- House body -->
+    <rect x="18" y="62" width="114" height="90" fill="#1e1e2e" stroke="#f97316" stroke-width="2"/>
+    <!-- Door -->
+    <rect x="59" y="105" width="32" height="47" rx="16" fill="#f97316" opacity="0.9"/>
+    <!-- Left window -->
+    <rect x="26" y="75" width="24" height="20" rx="3" fill="#fbbf24" opacity="0.7"/>
+    <!-- Right window -->
+    <rect x="100" y="75" width="24" height="20" rx="3" fill="#fbbf24" opacity="0.7"/>
+    <!-- Chimney -->
+    <rect x="102" y="-18" width="18" height="28" fill="#ea580c"/>
+    <!-- Smoke puffs -->
+    <circle cx="111" cy="-24" r="6" fill="#374151" opacity="0.5"/>
+    <circle cx="118" cy="-32" r="5" fill="#374151" opacity="0.35"/>
+    <circle cx="106" cy="-38" r="4" fill="#374151" opacity="0.2"/>
+    <!-- Check mark badge -->
+    <circle cx="130" cy="20" r="16" fill="#16a34a" stroke="#0a0a10" stroke-width="2"/>
+    <polyline points="122,20 128,26 138,14" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- TITLE: Helpzy -->
+  <text
+    x="240" y="130"
+    font-family="'Segoe UI','Inter','Helvetica Neue',Arial,sans-serif"
+    font-size="80"
+    font-weight="900"
+    letter-spacing="-3"
+    fill="url(#titleGrad)"
+    filter="url(#glow)"
+  >Helpzy</text>
+
+  <!-- Accent underline -->
+  <rect x="240" y="143" width="430" height="2.5" rx="2" fill="url(#accentLine)" opacity="0.8"/>
 
   <!-- Tagline -->
-  <text x="79" y="145" font-family="Arial, sans-serif" font-size="14" font-weight="400"
-        letter-spacing="4" fill="#86efac" opacity="0.8">INDIA'S HOME SERVICE PLATFORM</text>
+  <text
+    x="240" y="178"
+    font-family="'Segoe UI','Inter',Arial,sans-serif"
+    font-size="17"
+    font-weight="400"
+    letter-spacing="0.5"
+    fill="#94a3b8"
+  >Home Services · Verified Pros · Instant Booking</text>
 
-  <!-- Divider -->
-  <line x1="490" y1="60" x2="490" y2="140" stroke="#a3e635" stroke-width="1" opacity="0.2"/>
+  <!-- Bottom pill badges row -->
+  <!-- Next.js pill -->
+  <rect x="240" y="205" width="88" height="26" rx="13" fill="#111111" stroke="#e2e8f0" stroke-width="1" opacity="0.9"/>
+  <text x="284" y="222" text-anchor="middle" font-family="'Segoe UI',monospace,sans-serif" font-size="11" font-weight="700" fill="#e2e8f0">Next.js 16</text>
 
-  <!-- Service icons area (right side) -->
-  <!-- Plumber icon -->
-  <circle cx="555" cy="100" r="28" fill="#052e16" stroke="#a3e635" stroke-width="1.5" opacity="0.8"/>
-  <text x="555" y="107" font-family="Arial" font-size="22" text-anchor="middle" fill="#a3e635">🔧</text>
+  <!-- Tailwind CSS pill -->
+  <rect x="338" y="205" width="110" height="26" rx="13" fill="#0f2040" stroke="#38bdf8" stroke-width="1" opacity="0.9"/>
+  <text x="393" y="222" text-anchor="middle" font-family="'Segoe UI',monospace,sans-serif" font-size="11" font-weight="700" fill="#38bdf8">Tailwind CSS</text>
 
-  <!-- Electrician icon -->
-  <circle cx="625" cy="100" r="28" fill="#052e16" stroke="#a3e635" stroke-width="1.5" opacity="0.8"/>
-  <text x="625" y="107" font-family="Arial" font-size="22" text-anchor="middle" fill="#a3e635">⚡</text>
+  <!-- SQLite pill -->
+  <rect x="458" y="205" width="78" height="26" rx="13" fill="#0a1a0a" stroke="#4ade80" stroke-width="1" opacity="0.9"/>
+  <text x="497" y="222" text-anchor="middle" font-family="'Segoe UI',monospace,sans-serif" font-size="11" font-weight="700" fill="#4ade80">SQLite</text>
 
-  <!-- Cleaner icon -->
-  <circle cx="695" cy="100" r="28" fill="#052e16" stroke="#a3e635" stroke-width="1.5" opacity="0.8"/>
-  <text x="695" y="107" font-family="Arial" font-size="22" text-anchor="middle" fill="#a3e635">🧹</text>
+  <!-- OTP Auth pill -->
+  <rect x="546" y="205" width="90" height="26" rx="13" fill="#1f0f30" stroke="#c084fc" stroke-width="1" opacity="0.9"/>
+  <text x="591" y="222" text-anchor="middle" font-family="'Segoe UI',monospace,sans-serif" font-size="11" font-weight="700" fill="#c084fc">OTP Auth</text>
 
-  <!-- AC icon -->
-  <circle cx="765" cy="100" r="28" fill="#052e16" stroke="#a3e635" stroke-width="1.5" opacity="0.8"/>
-  <text x="765" y="107" font-family="Arial" font-size="22" text-anchor="middle" fill="#a3e635">❄️</text>
+  <!-- India badge -->
+  <rect x="646" y="205" width="80" height="26" rx="13" fill="#1a0800" stroke="#f97316" stroke-width="1" opacity="0.9"/>
+  <text x="686" y="222" text-anchor="middle" font-family="'Segoe UI',monospace,sans-serif" font-size="11" font-weight="700" fill="#f97316">🇮🇳 India</text>
 
-  <!-- Bottom tagline -->
-  <text x="450" y="182" font-family="Arial, sans-serif" font-size="11" text-anchor="middle"
-        letter-spacing="3" fill="#4ade80" opacity="0.5">BOOK TRUSTED PROFESSIONALS · FAST · VERIFIED · RELIABLE</text>
+  <!-- Bottom border glow -->
+  <rect x="0" y="275" width="1200" height="5" rx="0" fill="url(#accentLine)" opacity="0.4"/>
 </svg>

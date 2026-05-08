@@ -7,7 +7,8 @@ async function requireAdmin() {
     const cookieStore = await cookies();
     const token = cookieStore.get('helpzy_session')?.value;
     if (!token) return null;
-    const resp = await fetch(`http://localhost:3000/api/auth`, { headers: { cookie: `helpzy_session=${token}` }, cache: 'no-store' });
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const resp = await fetch(`${baseUrl}/api/auth`, { headers: { cookie: `helpzy_session=${token}` }, cache: 'no-store' });
     if (!resp.ok) return null;
     const data = await resp.json();
     return data.user?.role === 'admin' ? data.user : null;
@@ -34,10 +35,10 @@ export async function GET() {
 
     return NextResponse.json({
       stats: {
-        users: userCount.count,
-        active_providers: providerCount.count,
-        bookings: bookingCount.count,
-        revenue: revenueRow.total,
+        users: parseInt(userCount.count),
+        active_providers: parseInt(providerCount.count),
+        bookings: parseInt(bookingCount.count),
+        revenue: parseFloat(revenueRow.total),
       },
       pending_providers: pendingProviders,
       recent_bookings: recentBookings,
