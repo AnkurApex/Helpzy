@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed": "#e2e2e2",
+            "on-tertiary-fixed-variant": "#454747",
+            "surface-container": "#f0eded",
+            "primary": "#016e21",
+            "outline": "#6f7a6c",
+            "on-background": "#1c1b1b",
+            "secondary": "#39692f",
+            "on-primary-fixed-variant": "#005316",
+            "surface-tint": "#016e21",
+            "surface-container-high": "#eae7e7",
+            "on-secondary-fixed-variant": "#215119",
+            "tertiary": "#5d5f5f",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed": "#002105",
+            "on-secondary-fixed": "#002200",
+            "primary-fixed-dim": "#7edb7f",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#b9f1a7",
+            "outline-variant": "#bfcaba",
+            "tertiary-container": "#d9d9d9",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#1a1c1c",
+            "inverse-on-surface": "#f3f0ef",
+            "tertiary-fixed-dim": "#c6c6c7",
+            "on-error-container": "#93000a",
+            "surface-variant": "#e5e2e1",
+            "on-secondary-container": "#3d6e32",
+            "error-container": "#ffdad6",
+            "on-surface-variant": "#3f493d",
+            "primary-container": "#90ee90",
+            "secondary-container": "#b6efa5",
+            "on-tertiary-container": "#5d5f5f",
+            "primary-fixed": "#99f899",
+            "surface-container-highest": "#e5e2e1",
+            "on-error": "#ffffff",
+            "surface-container-low": "#f6f3f2",
+            "surface": "#fcf9f8",
+            "on-primary-container": "#016e21",
+            "inverse-surface": "#313030",
+            "secondary-fixed-dim": "#9ed58d",
+            "background": "#fcf9f8",
+            "surface-dim": "#dcd9d9",
+            "surface-bright": "#fcf9f8",
+            "inverse-primary": "#7edb7f",
+            "on-surface": "#1c1b1b"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "24px",
+            "container-max": "1280px",
+            "margin-mobile": "20px",
+            "section-padding": "120px",
+            "unit": "8px"
+          },
+          "fontFamily": {
+            "headline-md": ["Inter"],
+            "body-md": ["Inter"],
+            "label-bold": ["Inter"],
+            "display-xl": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-lg": ["Inter"]
+          },
+          "fontSize": {
+            "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+            "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}],
+            "display-xl": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+            "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      background-color: #fcf9f8;
+      color: #1c1b1b;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #016e21;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-container">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 z-50 bg-emerald-950 dark:bg-emerald-950 border-b border-emerald-900">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-lime-400 italic font-inter antialiased uppercase tracking-tighter">LocalPro</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-emerald-100/60 font-medium hover:text-lime-300 transition-colors font-inter antialiased uppercase tracking-tighter" href="#">Browse Services</a>
+<a class="text-emerald-100/60 font-medium hover:text-lime-300 transition-colors font-inter antialiased uppercase tracking-tighter" href="#">Join as Pro</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-lime-400 text-emerald-950 px-6 py-2 rounded-full font-bold uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-transform">Find Pro</button>
+</div>
+</div>
+</header>
+<main class="min-h-screen pt-24 pb-32">
+<!-- Hero Header (Progress Indicator) -->
+<section class="max-w-screen-2xl mx-auto px-6 mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="text-primary font-label-bold text-label-bold uppercase tracking-widest mb-4 block">Booking Journey</span>
+<h1 class="font-display-xl text-display-xl max-w-3xl">SECURE YOUR PROFESSIONAL.</h1>
+</div>
+<div class="flex gap-2">
+<div class="h-1.5 w-12 bg-primary rounded-full"></div>
+<div class="h-1.5 w-12 bg-primary-container rounded-full"></div>
+<div class="h-1.5 w-12 bg-surface-container-highest rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- Booking Flow Layout -->
+<section class="max-w-screen-2xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: The Form -->
+<div class="lg:col-span-8 space-y-20">
+<!-- Step 1: Select Date & Time -->
+<div class="space-y-8">
+<div class="flex items-center gap-4">
+<span class="bg-emerald-950 text-lime-400 w-12 h-12 flex items-center justify-center rounded-full font-black text-xl italic">01</span>
+<h2 class="font-headline-lg text-headline-lg">SCHEDULE.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Calendar Placeholder -->
+<div class="bg-white border border-outline-variant p-8 rounded-lg">
+<div class="flex justify-between items-center mb-6">
+<span class="font-label-bold text-label-bold uppercase">October 2024</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary" data-icon="chevron_left">chevron_left</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center">
+<span class="text-[10px] font-bold text-outline uppercase">Mo</span>
+<span class="text-[10px] font-bold text-outline uppercase">Tu</span>
+<span class="text-[10px] font-bold text-outline uppercase">We</span>
+<span class="text-[10px] font-bold text-outline uppercase">Th</span>
+<span class="text-[10px] font-bold text-outline uppercase">Fr</span>
+<span class="text-[10px] font-bold text-outline uppercase">Sa</span>
+<span class="text-[10px] font-bold text-outline uppercase">Su</span>
+<!-- Calendar Grid Mockup -->
+<div class="py-3 hover:bg-surface-container rounded-md cursor-pointer font-bold">12</div>
+<div class="py-3 hover:bg-surface-container rounded-md cursor-pointer font-bold">13</div>
+<div class="py-3 bg-primary text-white rounded-md cursor-pointer font-bold">14</div>
+<div class="py-3 hover:bg-surface-container rounded-md cursor-pointer font-bold">15</div>
+<div class="py-3 hover:bg-surface-container rounded-md cursor-pointer font-bold">16</div>
+<div class="py-3 hover:bg-surface-container rounded-md cursor-pointer font-bold">17</div>
+<div class="py-3 hover:bg-surface-container rounded-md cursor-pointer font-bold">18</div>
+</div>
+</div>
+<!-- Time Slots -->
+<div class="space-y-4">
+<span class="font-label-bold text-label-bold uppercase text-outline">Available Windows</span>
+<div class="grid grid-cols-2 gap-4">
+<button class="border-2 border-primary text-primary py-4 px-6 rounded-lg font-bold hover:bg-primary hover:text-white transition-all">09:00 AM</button>
+<button class="border border-outline-variant text-on-surface py-4 px-6 rounded-lg font-bold hover:border-primary transition-all">11:30 AM</button>
+<button class="border border-outline-variant text-on-surface py-4 px-6 rounded-lg font-bold hover:border-primary transition-all">02:00 PM</button>
+<button class="border border-outline-variant text-on-surface py-4 px-6 rounded-lg font-bold hover:border-primary transition-all">04:30 PM</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 2: Job Details -->
+<div class="space-y-8">
+<div class="flex items-center gap-4">
+<span class="bg-emerald-950 text-lime-400 w-12 h-12 flex items-center justify-center rounded-full font-black text-xl italic">02</span>
+<h2 class="font-headline-lg text-headline-lg">PROJECT SCOPE.</h2>
+</div>
+<div class="space-y-6">
+<div class="group">
+<label class="block font-label-bold text-label-bold uppercase text-outline mb-2 group-focus-within:text-primary transition-colors">Service Description</label>
+<textarea class="w-full bg-white border border-outline-variant rounded-lg p-6 font-body-md focus:ring-0 focus:border-primary transition-all outline-none" placeholder="Explain what you need fixed or built..." rows="4"></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label-bold text-label-bold uppercase text-outline mb-2">Estimated Duration</label>
+<select class="w-full bg-white border border-outline-variant rounded-lg p-4 font-body-md focus:ring-0 focus:border-primary outline-none">
+<option>Quick Fix (1-2 Hours)</option>
+<option>Half Day (4 Hours)</option>
+<option>Full Day (8 Hours)</option>
+<option>Multi-Day Project</option>
+</select>
+</div>
+<div class="flex flex-col justify-end">
+<label class="flex items-center gap-3 cursor-pointer p-4 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
+<input class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="font-bold text-on-surface uppercase text-sm">Materials Needed</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 3: Contact Info -->
+<div class="space-y-8">
+<div class="flex items-center gap-4">
+<span class="bg-emerald-950 text-lime-400 w-12 h-12 flex items-center justify-center rounded-full font-black text-xl italic">03</span>
+<h2 class="font-headline-lg text-headline-lg">COORDINATES.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-6">
+<input class="w-full bg-white border border-outline-variant rounded-lg p-4 font-body-md focus:border-primary outline-none" placeholder="FULL NAME" type="text"/>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-4 font-body-md focus:border-primary outline-none" placeholder="EMAIL ADDRESS" type="email"/>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-4 font-body-md focus:border-primary outline-none" placeholder="PHONE NUMBER" type="tel"/>
+</div>
+<div class="relative min-h-[250px] rounded-lg overflow-hidden border border-outline-variant">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A detailed aerial satellite map view of an urban residential neighborhood with sharp street outlines and green spaces. The map reflects a professional navigation interface style with high-contrast lines and clear topographical markers. The aesthetic is modern and data-driven, emphasizing precision and geographical accuracy for service location tagging." style="background-image: url('https://lh3.googleusercontent.com/aida/ADBb0uieEUKbGEzXK3ZlE4QWnR3BK8F3p2ONVt8kLJt-FsaI58knvgEI0swhtSwHBd4m5X_USteXBOilHoY7M2Gzh2PVs2n1cE2oGrBV8FiM_pBjsukEeyoO9Wi4oGK1pJTvAYq3dpAZRit3fagBzzYYRqg0MXotWX7GUjWnHdecgsK9Hdej-gdg3pO6rI8S7GJ4krxxHLLcEsLacitwahVDURPXh-Yf_p3JUvznyN8q632udaOAeVCB6Yr6G5ZAEuB-IoQJHxxf5E1-ag')"></div>
+<div class="absolute inset-0 bg-black/10 flex items-center justify-center">
+<div class="bg-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<span class="font-bold uppercase text-xs">Confirm Location</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Summary Card (Sticky) -->
+<div class="lg:col-span-4">
+<div class="sticky top-28 space-y-6">
+<div class="bg-emerald-950 text-white rounded-lg p-8 space-y-8 border-t-8 border-lime-400">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-lime-400">SUMMARY.</h3>
+<p class="text-emerald-100/60 uppercase text-xs tracking-widest font-bold">Premium Tier Service</p>
+</div>
+<span class="material-symbols-outlined text-lime-400 text-3xl" data-icon="receipt_long">receipt_long</span>
+</div>
+<div class="space-y-4 border-y border-emerald-900 py-6">
+<div class="flex justify-between text-sm">
+<span class="text-emerald-100/40 uppercase font-bold">Pro Specialist</span>
+<span class="font-bold">Marco 'The Bolt' Rossi</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-emerald-100/40 uppercase font-bold">Date</span>
+<span class="font-bold">14 OCT, 2024</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-emerald-100/40 uppercase font-bold">Time Window</span>
+<span class="font-bold">09:00 - 11:00 AM</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="text-emerald-100/40 uppercase font-bold text-xs">Total Estimate</span>
+<span class="text-4xl font-black text-lime-400 italic">$185.00</span>
+</div>
+<p class="text-[10px] text-emerald-100/30 uppercase leading-relaxed">Price includes platform fee and initial call-out. Final quote provided on-site for custom materials.</p>
+</div>
+<button class="w-full bg-lime-400 text-emerald-950 py-5 rounded-full font-black uppercase tracking-tighter text-lg hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-lime-400/10">
+              CONFIRM BOOKING
+            </button>
+</div>
+<!-- Trust Badge Card -->
+<div class="bg-surface-container-high p-6 rounded-lg flex items-center gap-4">
+<div class="bg-white p-3 rounded-full text-primary">
+<span class="material-symbols-outlined" data-icon="verified_user" data-weight="fill">verified_user</span>
+</div>
+<div>
+<p class="font-label-bold text-label-bold uppercase text-[12px]">LocalPro Guarantee</p>
+<p class="text-on-surface-variant text-xs font-medium">All jobs are insured up to $50,000 for peace of mind.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Break Section -->
+<section class="mt-32 w-full h-[500px] overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A high-intensity, close-up lifestyle photograph of a professional technician's hands working with precision tools in a modern architectural setting. The lighting is dramatic and high-contrast, featuring deep shadows and bright metallic highlights. The image captures the energetic efficiency of the brand with a focus on craftsmanship and technical mastery. The background is a clean, minimalist workspace." style="background-image: url('https://lh3.googleusercontent.com/aida/ADBb0ujtkaa9JzBT1P0oMRwy5PO76U8-tjQlc_4rLKruA7fIFSyogVdcn4-c3alhQP8qedfKvvd2-CgAdaIivQKzXl4U26xT7ksdperx7XPpx5HsfyJ-pyNcFQwHkpbIYr9zucVUBUFR0vnpjbycORtCr1thcadDSQo-3DfA3NreEzDCmkCBJcoZJttWHBQuqT-LC0jFK-bG8mar4TYTsOujuXyXQNRfGyVHYKdQ2kdebhCSr9a-zhMNharb83Lz_Xp2MQmtupcduS8vZQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="full-width border-t border-emerald-900 bg-emerald-950 dark:bg-emerald-950">
+<div class="w-full py-32 px-10 flex flex-col md:flex-row justify-between items-start max-w-screen-2xl mx-auto">
+<div class="max-w-md">
+<span class="text-3xl font-black text-lime-400 mb-8 block font-inter antialiased uppercase tracking-tighter italic">LocalPro</span>
+<p class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest leading-relaxed mb-8">
+          The world's most efficient platform for connecting skilled trades with people who demand excellence. Radical transparency, high-impact results.
+        </p>
+</div>
+<div class="grid grid-cols-2 gap-x-20 gap-y-12">
+<div class="flex flex-col gap-4">
+<span class="text-white font-black text-sm uppercase tracking-[0.2em] mb-4">PLATFORM</span>
+<a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Browse Services</a>
+<a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Join as Pro</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-white font-black text-sm uppercase tracking-[0.2em] mb-4">TRUST</span>
+<a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Safety</a>
+<a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Support</a>
+</div>
+</div>
+</div>
+<div class="w-full border-t border-emerald-900/50 py-10 px-10 flex flex-col md:flex-row justify-between items-center max-w-screen-2xl mx-auto">
+<span class="text-emerald-100/40 font-inter text-xs uppercase tracking-[0.3em]">© 2024 LOCALPRO. ENERGETIC EFFICIENCY.</span>
+<div class="flex gap-6 mt-6 md:mt-0">
+<span class="material-symbols-outlined text-emerald-100/40 cursor-pointer hover:text-lime-400" data-icon="public">public</span>
+<span class="material-symbols-outlined text-emerald-100/40 cursor-pointer hover:text-lime-400" data-icon="group">group</span>
+<span class="material-symbols-outlined text-emerald-100/40 cursor-pointer hover:text-lime-400" data-icon="verified">verified</span>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 bg-emerald-950 border-t border-emerald-900 z-50">
+<div class="flex flex-col items-center justify-center text-emerald-100/50">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-emerald-100/50">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-lime-400 text-emerald-950 rounded-full px-6 py-1.5">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Bookings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-emerald-100/50">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Account</span>
+</div>
+</div>
+</body></html>

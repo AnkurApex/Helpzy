@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-container": "#f0eded",
+                        "primary": "#016e21",
+                        "outline": "#6f7a6c",
+                        "on-background": "#1c1b1b",
+                        "secondary": "#39692f",
+                        "on-primary-fixed-variant": "#005316",
+                        "surface-tint": "#016e21",
+                        "surface-container-high": "#eae7e7",
+                        "on-secondary-fixed-variant": "#215119",
+                        "tertiary": "#5d5f5f",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002105",
+                        "on-secondary-fixed": "#002200",
+                        "primary-fixed-dim": "#7edb7f",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#b9f1a7",
+                        "outline-variant": "#bfcaba",
+                        "tertiary-container": "#d9d9d9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "inverse-on-surface": "#f3f0ef",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e5e2e1",
+                        "on-secondary-container": "#3d6e32",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#3f493d",
+                        "primary-container": "#90ee90",
+                        "secondary-container": "#b6efa5",
+                        "on-tertiary-container": "#5d5f5f",
+                        "primary-fixed": "#99f899",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "surface": "#fcf9f8",
+                        "on-primary-container": "#016e21",
+                        "inverse-surface": "#313030",
+                        "secondary-fixed-dim": "#9ed58d",
+                        "background": "#fcf9f8",
+                        "surface-dim": "#dcd9d9",
+                        "surface-bright": "#fcf9f8",
+                        "inverse-primary": "#7edb7f",
+                        "on-surface": "#1c1b1b",
+                        "emerald-950": "#022c22",
+                        "lime-400": "#a3e635"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "section-padding": "120px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "display-xl": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fcf9f8;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-emerald-950 dark:bg-emerald-950 docked full-width top-0 z-50 border-b border-emerald-900">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-lime-400 italic font-inter antialiased uppercase tracking-tighter">LocalPro</span>
+<div class="hidden md:flex gap-6">
+<a class="text-emerald-100/60 font-medium hover:text-lime-300 transition-colors font-inter antialiased uppercase tracking-tighter" href="#">Home</a>
+<a class="text-lime-400 border-b-2 border-lime-400 font-bold hover:text-lime-300 transition-colors font-inter antialiased uppercase tracking-tighter" href="#">Search</a>
+<a class="text-emerald-100/60 font-medium hover:text-lime-300 transition-colors font-inter antialiased uppercase tracking-tighter" href="#">Bookings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-emerald-900/50 rounded-full px-4 py-2 border border-emerald-800">
+<span class="material-symbols-outlined text-emerald-100/60 mr-2">search</span>
+<input class="bg-transparent border-none text-white focus:ring-0 text-sm w-48 font-inter" placeholder="Chicago, IL" type="text"/>
+</div>
+<button class="bg-lime-400 text-emerald-950 px-6 py-2 rounded-full font-bold uppercase tracking-tighter hover:bg-lime-300 active:scale-95 transition-all">Find Pro</button>
+</div>
+</nav>
+</header>
+<main class="min-h-screen flex flex-col">
+<!-- Search Header / Hero -->
+<section class="bg-emerald-950 py-16 px-6">
+<div class="max-w-screen-2xl mx-auto">
+<p class="text-lime-400 font-label-bold mb-2">32 PROS FOUND IN CHICAGO</p>
+<h1 class="font-display-xl text-display-xl text-white mb-8">Plumbing Experts</h1>
+<!-- Filters Bar -->
+<div class="flex flex-wrap gap-4 items-center bg-emerald-900/30 p-4 rounded-lg border border-emerald-800">
+<div class="flex items-center gap-2 px-4 py-2 bg-emerald-800 text-white rounded-full">
+<span class="text-xs font-bold">RATING: 4.5+</span>
+<span class="material-symbols-outlined text-sm">close</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-emerald-800 text-white rounded-full">
+<span class="text-xs font-bold">PRICE: $$ - $$$</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-emerald-800 text-white rounded-full">
+<span class="text-xs font-bold">AVAILABILITY: TODAY</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<div class="ml-auto">
+<button class="text-lime-400 font-label-bold flex items-center gap-2">
+<span class="material-symbols-outlined">tune</span>
+                            ALL FILTERS
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Results Grid & Map -->
+<section class="flex flex-col lg:flex-row flex-1 overflow-hidden">
+<!-- Results List -->
+<div class="w-full lg:w-3/5 p-6 md:p-10 lg:p-12 overflow-y-auto max-h-[80vh] lg:max-h-none">
+<div class="grid grid-cols-1 gap-8">
+<!-- Pro Card 1 -->
+<div class="group bg-white rounded-lg border border-outline-variant p-6 flex flex-col md:flex-row gap-6 hover:border-primary transition-all duration-300">
+<div class="w-full md:w-48 h-48 rounded bg-surface-container-high overflow-hidden relative shrink-0">
+<img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional plumber wearing a dark green utility uniform, smiling confidently while standing in a modern, brightly lit residential kitchen with clean stainless steel appliances. The photography has a high-contrast, professional architectural feel with soft natural light streaming from a large window. The color palette is dominated by deep forest greens and clean whites, reflecting an energetic yet reliable atmosphere." src="https://lh3.googleusercontent.com/aida/ADBb0uieEUKbGEzXK3ZlE4QWnR3BK8F3p2ONVt8kLJt-FsaI58knvgEI0swhtSwHBd4m5X_USteXBOilHoY7M2Gzh2PVs2n1cE2oGrBV8FiM_pBjsukEeyoO9Wi4oGK1pJTvAYq3dpAZRit3fagBzzYYRqg0MXotWX7GUjWnHdecgsK9Hdej-gdg3pO6rI8S7GJ4krxxHLLcEsLacitwahVDURPXh-Yf_p3JUvznyN8q632udaOAeVCB6Yr6G5ZAEuB-IoQJHxxf5E1-ag"/>
+<div class="absolute top-2 right-2 bg-lime-400 text-emerald-950 font-bold text-[10px] px-2 py-1 rounded-full uppercase tracking-widest">Top Rated</div>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-emerald-950 uppercase">Marcus Thorne</h3>
+<div class="flex items-center gap-1 bg-emerald-50 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-sm">4.9</span>
+<span class="text-xs text-outline">(128)</span>
+</div>
+</div>
+<p class="text-emerald-900/70 font-bold text-xs uppercase tracking-widest mb-4">Master Plumber • 12 Years Exp.</p>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 line-clamp-2">Specializing in emergency repairs, high-efficiency boiler installations, and smart home water monitoring systems across downtown Chicago.</p>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-xs text-outline font-bold uppercase">Starting at</p>
+<p class="text-xl font-black text-emerald-950">$85/hr</p>
+</div>
+<button class="bg-emerald-950 text-lime-400 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Book Now</button>
+</div>
+</div>
+</div>
+<!-- Pro Card 2 -->
+<div class="group bg-white rounded-lg border border-outline-variant p-6 flex flex-col md:flex-row gap-6 hover:border-primary transition-all duration-300">
+<div class="w-full md:w-48 h-48 rounded bg-surface-container-high overflow-hidden relative shrink-0">
+<img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up action shot of expert hands using a high-tech digital pipe inspection tool inside a clean, modern bathroom setting with white marble tiling. The lighting is crisp and cool-toned, emphasizing the neon green glowing display of the diagnostic equipment. The composition is dynamic and sharp, conveying energetic efficiency and technical precision in a bright, modern light-mode style." src="https://lh3.googleusercontent.com/aida/ADBb0ujtkaa9JzBT1P0oMRwy5PO76U8-tjQlc_4rLKruA7fIFSyogVdcn4-c3alhQP8qedfKvvd2-CgAdaIivQKzXl4U26xT7ksdperx7XPpx5HsfyJ-pyNcFQwHkpbIYr9zucVUBUFR0vnpjbycORtCr1thcadDSQo-3DfA3NreEzDCmkCBJcoZJttWHBQuqT-LC0jFK-bG8mar4TYTsOujuXyXQNRfGyVHYKdQ2kdebhCSr9a-zhMNharb83Lz_Xp2MQmtupcduS8vZQ"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-emerald-950 uppercase">Apex Flow Pros</h3>
+<div class="flex items-center gap-1 bg-emerald-50 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-sm">4.7</span>
+<span class="text-xs text-outline">(245)</span>
+</div>
+</div>
+<p class="text-emerald-900/70 font-bold text-xs uppercase tracking-widest mb-4">Commercial &amp; Residential Specialists</p>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 line-clamp-2">Full-service plumbing team available 24/7. Rapid response for leak detection, sewer lines, and full bathroom renovations.</p>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-xs text-outline font-bold uppercase">Starting at</p>
+<p class="text-xl font-black text-emerald-950">$70/hr</p>
+</div>
+<button class="bg-emerald-950 text-lime-400 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Book Now</button>
+</div>
+</div>
+</div>
+<!-- Pro Card 3 -->
+<div class="group bg-white rounded-lg border border-outline-variant p-6 flex flex-col md:flex-row gap-6 hover:border-primary transition-all duration-300">
+<div class="w-full md:w-48 h-48 rounded bg-surface-container-high overflow-hidden relative shrink-0 flex items-center justify-center bg-emerald-50">
+<span class="material-symbols-outlined text-emerald-900/20 text-6xl">plumbing</span>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-emerald-950 uppercase">Elena Rodriguez</h3>
+<div class="flex items-center gap-1 bg-emerald-50 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-sm">5.0</span>
+<span class="text-xs text-outline">(56)</span>
+</div>
+</div>
+<p class="text-emerald-900/70 font-bold text-xs uppercase tracking-widest mb-4">Eco-Friendly Solutions Specialist</p>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 line-clamp-2">Providing sustainable plumbing alternatives, gray water systems, and solar water heater maintenance. Expert in green building codes.</p>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-xs text-outline font-bold uppercase">Starting at</p>
+<p class="text-xl font-black text-emerald-950">$95/hr</p>
+</div>
+<button class="bg-emerald-950 text-lime-400 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Book Now</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Map Column -->
+<div class="w-full lg:w-2/5 h-[400px] lg:h-auto bg-surface-container-high relative border-l border-outline-variant">
+<!-- Map Mockup -->
+<div class="absolute inset-0 bg-emerald-50" data-location="Chicago" style="">
+<div class="w-full h-full relative overflow-hidden bg-[url('https://api.mapbox.com/styles/v1/mapbox/light-v10/static/-87.6298,41.8781,11,0/1200x1200?access_token=none')] bg-cover bg-center">
+<!-- Map Pins -->
+<div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 group cursor-pointer">
+<div class="bg-emerald-950 text-lime-400 font-black px-3 py-1 rounded-full text-sm border-2 border-lime-400 shadow-xl group-hover:scale-110 transition-transform">$85</div>
+<div class="w-0.5 h-3 bg-emerald-950 mx-auto"></div>
+</div>
+<div class="absolute top-1/2 left-1/3 group cursor-pointer">
+<div class="bg-emerald-950 text-lime-400 font-black px-3 py-1 rounded-full text-sm border-2 border-lime-400 shadow-xl group-hover:scale-110 transition-transform">$70</div>
+<div class="w-0.5 h-3 bg-emerald-950 mx-auto"></div>
+</div>
+<div class="absolute bottom-1/4 left-2/3 group cursor-pointer">
+<div class="bg-emerald-950 text-lime-400 font-black px-3 py-1 rounded-full text-sm border-2 border-lime-400 shadow-xl group-hover:scale-110 transition-transform">$95</div>
+<div class="w-0.5 h-3 bg-emerald-950 mx-auto"></div>
+</div>
+</div>
+</div>
+<!-- Map Overlay -->
+<div class="absolute top-4 left-4 right-4 flex justify-between">
+<div class="bg-white/90 backdrop-blur shadow-sm border border-outline-variant p-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">my_location</span>
+<span class="text-xs font-bold uppercase">Center of Chicago</span>
+</div>
+<button class="bg-white shadow-sm border border-outline-variant p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined text-emerald-950">fullscreen</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-emerald-950 dark:bg-emerald-950 full-width border-t border-emerald-900">
+<div class="w-full py-32 px-10 flex flex-col md:flex-row justify-between items-start max-w-screen-2xl mx-auto">
+<div class="mb-12 md:mb-0">
+<span class="text-3xl font-black text-lime-400 mb-8 block font-inter antialiased uppercase tracking-tighter italic">LocalPro</span>
+<p class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest">© 2024 LOCALPRO. ENERGETIC EFFICIENCY.</p>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-12">
+<div class="flex flex-col gap-4">
+<p class="text-white font-bold mb-2 uppercase tracking-tighter">Services</p>
+<a class="font-inter text-sm uppercase tracking-widest text-emerald-100/40 hover:text-white underline decoration-lime-400 decoration-2 transition-all" href="#">Browse Services</a>
+<a class="font-inter text-sm uppercase tracking-widest text-emerald-100/40 hover:text-white underline decoration-lime-400 decoration-2 transition-all" href="#">Join as Pro</a>
+</div>
+<div class="flex flex-col gap-4">
+<p class="text-white font-bold mb-2 uppercase tracking-tighter">Legal</p>
+<a class="font-inter text-sm uppercase tracking-widest text-emerald-100/40 hover:text-white underline decoration-lime-400 decoration-2 transition-all" href="#">Privacy</a>
+<a class="font-inter text-sm uppercase tracking-widest text-emerald-100/40 hover:text-white underline decoration-lime-400 decoration-2 transition-all" href="#">Safety</a>
+</div>
+<div class="flex flex-col gap-4">
+<p class="text-white font-bold mb-2 uppercase tracking-tighter">Company</p>
+<a class="font-inter text-sm uppercase tracking-widest text-emerald-100/40 hover:text-white underline decoration-lime-400 decoration-2 transition-all" href="#">Support</a>
+<a class="font-inter text-sm uppercase tracking-widest text-emerald-100/40 hover:text-white underline decoration-lime-400 decoration-2 transition-all" href="#">Careers</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 bg-emerald-950 z-50 border-t border-emerald-900">
+<a class="flex flex-col items-center justify-center text-emerald-100/50" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-lime-400 text-emerald-950 rounded-full px-6 py-1.5 active:scale-105 transition-transform" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-100/50" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-100/50" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Account</span>
+</a>
+</div>
+</body></html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-container": "#f0eded",
+                        "primary": "#016e21",
+                        "outline": "#6f7a6c",
+                        "on-background": "#1c1b1b",
+                        "secondary": "#39692f",
+                        "on-primary-fixed-variant": "#005316",
+                        "surface-tint": "#016e21",
+                        "surface-container-high": "#eae7e7",
+                        "on-secondary-fixed-variant": "#215119",
+                        "tertiary": "#5d5f5f",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002105",
+                        "on-secondary-fixed": "#002200",
+                        "primary-fixed-dim": "#7edb7f",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#b9f1a7",
+                        "outline-variant": "#bfcaba",
+                        "tertiary-container": "#d9d9d9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "inverse-on-surface": "#f3f0ef",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e5e2e1",
+                        "on-secondary-container": "#3d6e32",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#3f493d",
+                        "primary-container": "#90ee90",
+                        "secondary-container": "#b6efa5",
+                        "on-tertiary-container": "#5d5f5f",
+                        "primary-fixed": "#99f899",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "surface": "#fcf9f8",
+                        "on-primary-container": "#016e21",
+                        "inverse-surface": "#313030",
+                        "secondary-fixed-dim": "#9ed58d",
+                        "background": "#fcf9f8",
+                        "surface-dim": "#dcd9d9",
+                        "surface-bright": "#fcf9f8",
+                        "inverse-primary": "#7edb7f",
+                        "on-surface": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "section-padding": "120px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "display-xl": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { background-color: #fcf9f8; color: #1c1b1b; }
+        .neon-accent { color: #99f899; }
+        .deep-forest { background-color: #002105; }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-emerald-950 dark:bg-emerald-950 docked full-width top-0 z-50 border-b border-emerald-900 flat no-shadows">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-black text-lime-400 italic font-inter antialiased uppercase tracking-tighter">
+                LocalPro
+            </div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-emerald-100/60 font-medium hover:text-lime-300 transition-colors uppercase tracking-widest text-xs" href="#">Browse Services</a>
+<a class="text-emerald-100/60 font-medium hover:text-lime-300 transition-colors uppercase tracking-widest text-xs" href="#">Join as Pro</a>
+<a class="text-emerald-100/60 font-medium hover:text-lime-300 transition-colors uppercase tracking-widest text-xs" href="#">Safety</a>
+<div class="h-6 w-px bg-emerald-800"></div>
+<button class="bg-lime-400 text-emerald-950 px-6 py-2 rounded-full font-bold uppercase tracking-tighter text-sm active:scale-95 duration-100">
+                    Find Pro
+                </button>
+</nav>
+<div class="md:hidden">
+<span class="material-symbols-outlined text-lime-400">menu</span>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative bg-emerald-950 pt-32 pb-24 overflow-hidden">
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<img class="w-full h-full object-cover grayscale" data-alt="A macro close-up of high-grade copper piping and industrial plumbing valves arranged in a precise geometric patterns. The lighting is high-contrast with deep forest shadows and bright neon green highlights glinting off the metal surfaces. The aesthetic is clean, professional, and powerful, reinforcing the brand's identity of energetic efficiency and institutional reliability." src="https://lh3.googleusercontent.com/aida/ADBb0uieEUKbGEzXK3ZlE4QWnR3BK8F3p2ONVt8kLJt-FsaI58knvgEI0swhtSwHBd4m5X_USteXBOilHoY7M2Gzh2PVs2n1cE2oGrBV8FiM_pBjsukEeyoO9Wi4oGK1pJTvAYq3dpAZRit3fagBzzYYRqg0MXotWX7GUjWnHdecgsK9Hdej-gdg3pO6rI8S7GJ4krxxHLLcEsLacitwahVDURPXh-Yf_p3JUvznyN8q632udaOAeVCB6Yr6G5ZAEuB-IoQJHxxf5E1-ag"/>
+</div>
+<div class="max-w-screen-2xl mx-auto px-6 relative z-10">
+<div class="flex flex-col md:flex-row items-end justify-between gap-12">
+<div class="flex-1">
+<div class="inline-flex items-center bg-lime-400 text-emerald-950 px-4 py-1 rounded-full mb-6">
+<span class="material-symbols-outlined text-[18px] mr-2" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-label-bold font-label-bold">PLATINUM VERIFIED PROVIDER</span>
+</div>
+<h1 class="font-display-xl text-display-xl text-on-primary tracking-tighter mb-4">
+                            APEX PLUMBING SOLUTIONS
+                        </h1>
+<p class="text-headline-md font-headline-md text-lime-400 max-w-2xl">
+                            DOMINATING THE FLOW. 24/7 ELITE EMERGENCY RESPONSE.
+                        </p>
+</div>
+<div class="flex flex-col items-end">
+<div class="text-right mb-6">
+<div class="text-white opacity-60 text-label-bold">RATING</div>
+<div class="flex items-center text-lime-400">
+<span class="text-headline-lg font-headline-lg mr-2">4.9</span>
+<div class="flex text-2xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+</div>
+</div>
+<button class="bg-lime-400 text-emerald-950 px-10 py-5 rounded-full font-display-xl text-lg uppercase tracking-widest hover:bg-white transition-all transform active:scale-95">
+                            BOOK NOW
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Bento Grid -->
+<section class="py-20 px-6 max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-white p-8 rounded-lg border border-emerald-950/10 flex flex-col justify-between h-48">
+<span class="material-symbols-outlined text-primary text-4xl">speed</span>
+<div>
+<div class="text-headline-md font-headline-md text-primary">15 MIN</div>
+<div class="text-label-bold font-label-bold text-outline uppercase">AVG RESPONSE TIME</div>
+</div>
+</div>
+<div class="bg-primary text-white p-8 rounded-lg flex flex-col justify-between h-48">
+<span class="material-symbols-outlined text-lime-400 text-4xl">handyman</span>
+<div>
+<div class="text-headline-md font-headline-md">1.2K+</div>
+<div class="text-label-bold font-label-bold uppercase">PROJECTS COMPLETED</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-lg border border-emerald-950/10 flex flex-col justify-between h-48 md:col-span-2">
+<span class="material-symbols-outlined text-primary text-4xl">workspace_premium</span>
+<div>
+<div class="text-headline-md font-headline-md text-primary">LICENSED &amp; INSURED</div>
+<div class="text-label-bold font-label-bold text-outline uppercase">MASTER PLUMBER CERTIFIED #AP-9022</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing & Services -->
+<section class="py-section-padding bg-surface-container-low px-6">
+<div class="max-w-screen-2xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg mb-16 uppercase tracking-tighter">
+                    PRECISION SERVICES &amp; <span class="text-primary">FLAT-RATE PRICING</span>
+</h2>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="group bg-white p-10 rounded-lg flex items-center justify-between border-2 border-transparent hover:border-primary transition-all">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Emergency Pipe Repair</h3>
+<p class="text-body-lg font-body-lg text-outline max-w-md">Immediate containment of leaks, burst pipes, and structural water damage. Zero hesitation response.</p>
+</div>
+<div class="text-right">
+<div class="text-label-bold text-primary mb-1">STARTING AT</div>
+<div class="text-headline-lg font-headline-lg">$199</div>
+</div>
+</div>
+<div class="group bg-white p-10 rounded-lg flex items-center justify-between border-2 border-transparent hover:border-primary transition-all">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Water Heater Install</h3>
+<p class="text-body-lg font-body-lg text-outline max-w-md">Next-gen energy efficient units. Includes removal of old hardware and system optimization.</p>
+</div>
+<div class="text-right">
+<div class="text-label-bold text-primary mb-1">STARTING AT</div>
+<div class="text-headline-lg font-headline-lg">$850</div>
+</div>
+</div>
+<div class="group bg-white p-10 rounded-lg flex items-center justify-between border-2 border-transparent hover:border-primary transition-all">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Drain Hydro-Jetting</h3>
+<p class="text-body-lg font-body-lg text-outline max-w-md">High-pressure restoration of drainage systems. Removes years of sediment and blockages.</p>
+</div>
+<div class="text-right">
+<div class="text-label-bold text-primary mb-1">STARTING AT</div>
+<div class="text-headline-lg font-headline-lg">$249</div>
+</div>
+</div>
+<div class="group bg-white p-10 rounded-lg flex items-center justify-between border-2 border-transparent hover:border-primary transition-all">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Main Line Camera Inspection</h3>
+<p class="text-body-lg font-body-lg text-outline max-w-md">Full HD diagnostic of underground infrastructure. Guaranteed accuracy and report.</p>
+</div>
+<div class="text-right">
+<div class="text-label-bold text-primary mb-1">STARTING AT</div>
+<div class="text-headline-lg font-headline-lg">$120</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Photo Gallery -->
+<section class="py-section-padding px-6 max-w-screen-2xl mx-auto">
+<div class="flex items-end justify-between mb-16">
+<div>
+<h2 class="font-headline-lg text-headline-lg uppercase tracking-tighter">FIELD OPERATIONS</h2>
+<p class="text-body-lg font-body-lg text-outline">Real-world results from the last 30 days of service.</p>
+</div>
+<div class="hidden md:block">
+<button class="border-2 border-primary text-primary px-8 py-3 rounded-full font-label-bold hover:bg-primary hover:text-white transition-all">VIEW FULL ARCHIVE</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-[700px]">
+<div class="md:col-span-8 overflow-hidden rounded-lg relative">
+<img class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" data-alt="A cinematic wide shot of a modern, high-tech plumbing workshop bathed in cool blue and neon green lighting. Skilled technicians in professional uniforms are performing maintenance on a complex series of shiny chrome water heating systems. The environment is impeccably clean, representing the ultimate standard in energetic efficiency and technical mastery within the trade." src="https://lh3.googleusercontent.com/aida/ADBb0ujtkaa9JzBT1P0oMRwy5PO76U8-tjQlc_4rLKruA7fIFSyogVdcn4-c3alhQP8qedfKvvd2-CgAdaIivQKzXl4U26xT7ksdperx7XPpx5HsfyJ-pyNcFQwHkpbIYr9zucVUBUFR0vnpjbycORtCr1thcadDSQo-3DfA3NreEzDCmkCBJcoZJttWHBQuqT-LC0jFK-bG8mar4TYTsOujuXyXQNRfGyVHYKdQ2kdebhCSr9a-zhMNharb83Lz_Xp2MQmtupcduS8vZQ"/>
+<div class="absolute bottom-6 left-6 bg-emerald-950/80 backdrop-blur-md p-6 rounded-lg text-white">
+<div class="text-headline-md font-headline-md mb-1">Water Station Overhaul</div>
+<div class="text-label-bold opacity-60">LOCATION: DOWNTOWN DISTRICT</div>
+</div>
+</div>
+<div class="md:col-span-4 grid grid-rows-2 gap-6">
+<div class="bg-emerald-900 rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-white font-black text-6xl opacity-10">APEX</span>
+</div>
+<div class="p-8 relative z-10">
+<div class="text-lime-400 font-headline-md mb-4 text-4xl">BEFORE &amp; AFTER</div>
+<p class="text-white/70 text-body-md">Swipe to see the transformation of a severely corroded residential main valve system.</p>
+</div>
+</div>
+<div class="bg-primary-container rounded-lg p-8 flex flex-col justify-between">
+<div class="text-primary font-black text-2xl uppercase italic">LOCALPRO EXCLUSIVE</div>
+<p class="text-primary font-headline-md">VOTED #1 SERVICE PARTNER 2023</p>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="material-symbols-outlined text-primary">security</span>
+<span class="material-symbols-outlined text-primary">timer</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Customer Reviews -->
+<section class="py-section-padding bg-emerald-950 px-6 text-white overflow-hidden">
+<div class="max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-20 items-start">
+<div class="lg:sticky lg:top-32">
+<h2 class="font-display-xl text-display-xl tracking-tighter mb-8 leading-none">
+                            VOICES FROM <br/><span class="text-lime-400 italic">THE FLOW.</span>
+</h2>
+<p class="text-emerald-100/60 text-body-lg mb-12">We don't just fix pipes; we restore peace of mind. Read how we impact the community daily.</p>
+<div class="p-8 bg-white/5 rounded-lg border border-white/10">
+<div class="text-headline-lg font-headline-lg text-lime-400 mb-2">98%</div>
+<div class="text-label-bold uppercase tracking-widest text-emerald-100">CLIENT RETENTION RATE</div>
+</div>
+</div>
+<div class="lg:col-span-2 space-y-12">
+<!-- Review 1 -->
+<div class="border-b border-white/10 pb-12">
+<div class="flex gap-1 text-lime-400 mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<blockquote class="font-headline-md text-headline-md mb-8 italic">
+                                "A pipe burst in my basement at 3 AM on a Sunday. Apex was at my door in 20 minutes. No extra fees for the hour, just pure efficiency. They saved me thousands in water damage."
+                            </blockquote>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-lime-400 flex items-center justify-center text-emerald-950 font-black">MJ</div>
+<div>
+<div class="text-label-bold">Marcus Johnson</div>
+<div class="text-emerald-100/40 text-sm">Verified Homeowner</div>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="border-b border-white/10 pb-12">
+<div class="flex gap-1 text-lime-400 mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<blockquote class="font-headline-md text-headline-md mb-8 italic">
+                                "Apex Plumbing Solutions represents the gold standard. Their water heater installation was surgical. Professional, clean, and the energetic efficiency of their crew is unmatched."
+                            </blockquote>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-black">EL</div>
+<div>
+<div class="text-label-bold">Elena Rodriguez</div>
+<div class="text-emerald-100/40 text-sm">Property Manager</div>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="border-b border-white/10 pb-12">
+<div class="flex gap-1 text-lime-400 mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<blockquote class="font-headline-md text-headline-md mb-8 italic">
+                                "Transparent pricing. No hidden bullshit. Just real experts doing real work. My go-to for all commercial properties now."
+                            </blockquote>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-black">DK</div>
+<div>
+<div class="text-label-bold">David Kessler</div>
+<div class="text-emerald-100/40 text-sm">Business Owner</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 px-6 text-center">
+<h2 class="font-display-xl text-display-xl mb-8 tracking-tighter">STOP THE LEAK. <br/><span class="text-primary italic">START THE FLOW.</span></h2>
+<p class="text-headline-md font-headline-md text-outline mb-12 max-w-2xl mx-auto uppercase">Available right now in your zip code.</p>
+<div class="flex flex-col md:flex-row gap-4 justify-center">
+<button class="bg-primary text-white px-12 py-6 rounded-full font-display-xl text-xl uppercase tracking-widest hover:bg-emerald-800 transition-all">CALL (555) 900-APEX</button>
+<button class="border-4 border-emerald-950 text-emerald-950 px-12 py-6 rounded-full font-display-xl text-xl uppercase tracking-widest hover:bg-emerald-950 hover:text-white transition-all">MESSAGE PRO</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-emerald-950 dark:bg-emerald-950 full-width border-t border-emerald-900 flat no-shadows">
+<div class="w-full py-32 px-10 flex flex-col md:flex-row justify-between items-start max-w-screen-2xl mx-auto">
+<div class="mb-12 md:mb-0">
+<span class="text-3xl font-black text-lime-400 mb-8 block font-inter antialiased uppercase tracking-tighter italic">LocalPro</span>
+<p class="text-emerald-100/40 max-w-xs font-inter text-sm uppercase tracking-widest">The world's most aggressive marketplace for professional trade services.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-2 gap-x-24 gap-y-12">
+<div>
+<h4 class="text-lime-400 font-bold mb-6 uppercase tracking-widest text-xs">Navigation</h4>
+<ul class="space-y-4">
+<li><a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Browse Services</a></li>
+<li><a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Join as Pro</a></li>
+<li><a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Safety</a></li>
+<li><a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Support</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lime-400 font-bold mb-6 uppercase tracking-widest text-xs">Legal</h4>
+<ul class="space-y-4">
+<li><a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Privacy</a></li>
+<li><a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Terms</a></li>
+<li><a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Guidelines</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto px-10 pb-12">
+<div class="text-emerald-100/20 text-xs font-bold uppercase tracking-[0.3em]">
+                © 2024 LOCALPRO. ENERGETIC EFFICIENCY.
+            </div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 bg-emerald-950 border-t border-emerald-900 z-50">
+<div class="flex flex-col items-center justify-center text-emerald-100/50 hover:bg-emerald-900/50 p-2">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-emerald-100/50 hover:bg-emerald-900/50 p-2">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-emerald-100/50 hover:bg-emerald-900/50 p-2">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[11px] font-bold uppercase tracking-widest mt-1">Bookings</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-lime-400 text-emerald-950 rounded-full px-6 py-1.5 active:scale-105 transition-transform">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[11px] font-bold uppercase tracking-widest">Account</span>
+</div>
+</nav>
+</body></html>

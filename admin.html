@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LocalPro Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed": "#e2e2e2",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "surface-container": "#f0eded",
+                      "primary": "#016e21",
+                      "outline": "#6f7a6c",
+                      "on-background": "#1c1b1b",
+                      "secondary": "#39692f",
+                      "on-primary-fixed-variant": "#005316",
+                      "surface-tint": "#016e21",
+                      "surface-container-high": "#eae7e7",
+                      "on-secondary-fixed-variant": "#215119",
+                      "tertiary": "#5d5f5f",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#002105",
+                      "on-secondary-fixed": "#002200",
+                      "primary-fixed-dim": "#7edb7f",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#b9f1a7",
+                      "outline-variant": "#bfcaba",
+                      "tertiary-container": "#d9d9d9",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "inverse-on-surface": "#f3f0ef",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e5e2e1",
+                      "on-secondary-container": "#3d6e32",
+                      "error-container": "#ffdad6",
+                      "on-surface-variant": "#3f493d",
+                      "primary-container": "#90ee90",
+                      "secondary-container": "#b6efa5",
+                      "on-tertiary-container": "#5d5f5f",
+                      "primary-fixed": "#99f899",
+                      "surface-container-highest": "#e5e2e1",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#f6f3f2",
+                      "surface": "#fcf9f8",
+                      "on-primary-container": "#016e21",
+                      "inverse-surface": "#313030",
+                      "secondary-fixed-dim": "#9ed58d",
+                      "background": "#fcf9f8",
+                      "surface-dim": "#dcd9d9",
+                      "surface-bright": "#fcf9f8",
+                      "inverse-primary": "#7edb7f",
+                      "on-surface": "#1c1b1b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "margin-mobile": "20px",
+                      "section-padding": "120px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-bold": ["Inter"],
+                      "display-xl": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                      "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                      "display-xl": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+                      "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+<!-- TopAppBar from JSON -->
+<header class="bg-emerald-950 dark:bg-emerald-950 docked full-width top-0 z-50 border-b border-emerald-900 flat no-shadows">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-lime-400 italic font-inter antialiased uppercase tracking-tighter">LocalPro</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-lime-400 border-b-2 border-lime-400 font-bold font-inter antialiased uppercase tracking-tighter hover:text-lime-300 transition-colors active:scale-95 duration-100" href="#">Dashboard</a>
+<a class="text-emerald-100/60 font-medium font-inter antialiased uppercase tracking-tighter hover:text-lime-300 transition-colors active:scale-95 duration-100" href="#">Verification Queue</a>
+<a class="text-emerald-100/60 font-medium font-inter antialiased uppercase tracking-tighter hover:text-lime-300 transition-colors active:scale-95 duration-100" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-emerald-100/40">search</span>
+<input class="bg-emerald-900/50 border-none rounded-full py-2 pl-10 pr-4 text-emerald-100 text-sm focus:ring-2 focus:ring-lime-400 w-64" placeholder="Search professionals..." type="text"/>
+</div>
+<button class="bg-lime-400 text-emerald-950 px-6 py-2 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-lime-300 transition-colors active:scale-95 duration-100">Find Pro</button>
+</div>
+</div>
+</header>
+<main class="min-h-screen pb-32">
+<!-- Hero Metrics Section -->
+<section class="py-section-padding px-6 max-w-screen-2xl mx-auto">
+<div class="flex flex-col mb-16">
+<h1 class="font-display-xl text-display-xl text-primary mb-4 uppercase">System Control</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">High-performance monitoring for LocalPro operations. Real-time metrics and professional validation portal.</p>
+</div>
+<!-- Metrics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Main Metric -->
+<div class="md:col-span-2 bg-primary p-12 rounded-xl flex flex-col justify-between overflow-hidden relative">
+<div class="relative z-10">
+<span class="text-primary-fixed font-label-bold text-label-bold uppercase tracking-[0.2em] mb-4 block">Total Platform Revenue</span>
+<h2 class="text-white font-display-xl text-display-xl">$1.24M</h2>
+<div class="mt-6 flex items-center gap-2 text-primary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="font-bold">+12.4% vs last month</span>
+</div>
+</div>
+<!-- Abstract Background Graphic -->
+<div class="absolute right-0 bottom-0 opacity-20 transform translate-x-1/4 translate-y-1/4">
+<span class="material-symbols-outlined text-[300px] text-white">monitoring</span>
+</div>
+</div>
+<!-- Secondary Metric 1 -->
+<div class="bg-surface-container-high p-8 rounded-xl border border-outline/10 flex flex-col justify-center">
+<span class="text-on-surface-variant font-label-bold text-label-bold uppercase tracking-widest mb-4 block">Active Pros</span>
+<h3 class="text-primary font-headline-lg text-headline-lg">14,802</h3>
+<p class="text-on-surface-variant text-sm mt-2">Energetic growth: 420 this week</p>
+</div>
+<!-- Secondary Metric 2 -->
+<div class="bg-lime-400 p-8 rounded-xl border border-primary/10 flex flex-col justify-center">
+<span class="text-emerald-950 font-label-bold text-label-bold uppercase tracking-widest mb-4 block">New Bookings</span>
+<h3 class="text-emerald-950 font-headline-lg text-headline-lg">2,490</h3>
+<p class="text-emerald-900 text-sm mt-2">Active now: 154 service calls</p>
+</div>
+</div>
+</section>
+<!-- Main Dashboard Content -->
+<section class="px-6 max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
+<!-- Pending Verifications Queue -->
+<div class="lg:col-span-2 space-y-8">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-primary uppercase">Verification Queue</h2>
+<span class="bg-error text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">24 Pending</span>
+</div>
+<div class="space-y-4">
+<!-- Verification Card 1 -->
+<div class="bg-white p-6 rounded-lg border border-outline-variant flex flex-col sm:flex-row items-center gap-6 group hover:border-primary transition-colors">
+<div class="w-24 h-24 rounded-full overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Profile photo" class="w-full h-full object-cover" data-alt="A professional headshot of a person with a friendly smile, taken in a bright, modern office with soft natural lighting. The image has a high-contrast aesthetic with deep greens in the background and bright white highlights on the subject's face. The mood is trustworthy and professional, aligned with a modern digital platform identity." src="https://lh3.googleusercontent.com/aida/ADBb0uieEUKbGEzXK3ZlE4QWnR3BK8F3p2ONVt8kLJt-FsaI58knvgEI0swhtSwHBd4m5X_USteXBOilHoY7M2Gzh2PVs2n1cE2oGrBV8FiM_pBjsukEeyoO9Wi4oGK1pJTvAYq3dpAZRit3fagBzzYYRqg0MXotWX7GUjWnHdecgsK9Hdej-gdg3pO6rI8S7GJ4krxxHLLcEsLacitwahVDURPXh-Yf_p3JUvznyN8q632udaOAeVCB6Yr6G5ZAEuB-IoQJHxxf5E1-ag"/>
+</div>
+<div class="flex-grow text-center sm:text-left">
+<h4 class="font-headline-md text-2xl text-on-background mb-1">Marcus Thorne</h4>
+<p class="text-on-surface-variant uppercase text-xs font-bold tracking-widest mb-4">Elite Electrician • London, UK</p>
+<div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+<span class="bg-surface-container px-3 py-1 rounded-full text-[10px] font-bold uppercase border border-outline-variant">ID Verified</span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-[10px] font-bold uppercase border border-outline-variant">Insurance Valid</span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-[10px] font-bold uppercase border border-outline-variant">References Check</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-3 rounded-full border border-outline-variant text-error hover:bg-error/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined">close</span>
+</button>
+<button class="bg-primary text-white px-6 py-3 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-emerald-800 active:scale-95 transition-all">Approve Pro</button>
+</div>
+</div>
+<!-- Verification Card 2 -->
+<div class="bg-white p-6 rounded-lg border border-outline-variant flex flex-col sm:flex-row items-center gap-6 group hover:border-primary transition-colors">
+<div class="w-24 h-24 rounded-full overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Profile photo" class="w-full h-full object-cover" data-alt="A professional portrait of a female landscape designer standing in a lush, high-contrast urban garden. The lighting is bright and energetic, with sharp shadows and vibrant neon green foliage accents. The subject looks confident and approachable, presented in a clean, modern lifestyle photography style suitable for an elite professional service dashboard." src="https://lh3.googleusercontent.com/aida/ADBb0ujtkaa9JzBT1P0oMRwy5PO76U8-tjQlc_4rLKruA7fIFSyogVdcn4-c3alhQP8qedfKvvd2-CgAdaIivQKzXl4U26xT7ksdperx7XPpx5HsfyJ-pyNcFQwHkpbIYr9zucVUBUFR0vnpjbycORtCr1thcadDSQo-3DfA3NreEzDCmkCBJcoZJttWHBQuqT-LC0jFK-bG8mar4TYTsOujuXyXQNRfGyVHYKdQ2kdebhCSr9a-zhMNharb83Lz_Xp2MQmtupcduS8vZQ"/>
+</div>
+<div class="flex-grow text-center sm:text-left">
+<h4 class="font-headline-md text-2xl text-on-background mb-1">Elena Rodriguez</h4>
+<p class="text-on-surface-variant uppercase text-xs font-bold tracking-widest mb-4">Landscape Architect • Austin, TX</p>
+<div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+<span class="bg-surface-container px-3 py-1 rounded-full text-[10px] font-bold uppercase border border-outline-variant">ID Verified</span>
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-[10px] font-bold uppercase border border-error/20">Insurance Pending</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-3 rounded-full border border-outline-variant text-error hover:bg-error/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined">close</span>
+</button>
+<button class="bg-primary text-white px-6 py-3 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-emerald-800 active:scale-95 transition-all">View Details</button>
+</div>
+</div>
+</div>
+<div class="pt-8">
+<button class="w-full py-6 border-2 border-dashed border-outline-variant rounded-xl text-on-surface-variant font-bold uppercase tracking-widest hover:bg-surface-container transition-colors">
+                        View Full 24 Item Queue
+                    </button>
+</div>
+</div>
+<!-- Recent Activity Log -->
+<div class="bg-emerald-950 p-10 rounded-xl text-white">
+<h3 class="font-headline-md text-headline-md text-lime-400 uppercase mb-8">System Activity</h3>
+<div class="space-y-8 relative">
+<!-- Timeline line -->
+<div class="absolute left-3 top-2 bottom-0 w-px bg-emerald-800"></div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-lime-400 border-4 border-emerald-950"></div>
+<p class="text-xs text-lime-400 font-bold uppercase tracking-widest mb-1">12 Minutes Ago</p>
+<h5 class="font-bold text-lg">Payout Batch Processed</h5>
+<p class="text-emerald-100/60 text-sm">$45,200.00 distributed to 124 pros.</p>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-emerald-700 border-4 border-emerald-950"></div>
+<p class="text-xs text-emerald-100/40 font-bold uppercase tracking-widest mb-1">1 Hour Ago</p>
+<h5 class="font-bold text-lg">New Policy Update</h5>
+<p class="text-emerald-100/60 text-sm">Security protocols updated for California region.</p>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-lime-400 border-4 border-emerald-950"></div>
+<p class="text-xs text-lime-400 font-bold uppercase tracking-widest mb-1">3 Hours Ago</p>
+<h5 class="font-bold text-lg">Spike Alert: Cleaning</h5>
+<p class="text-emerald-100/60 text-sm">200% increase in cleaning service searches.</p>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-error border-4 border-emerald-950"></div>
+<p class="text-xs text-error font-bold uppercase tracking-widest mb-1">5 Hours Ago</p>
+<h5 class="font-bold text-lg">Dispute Escalated</h5>
+<p class="text-emerald-100/60 text-sm">Ticket #4928 requires manual intervention.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from JSON -->
+<footer class="bg-emerald-950 dark:bg-emerald-950 full-width border-t border-emerald-900 flat no-shadows">
+<div class="w-full py-32 px-10 flex flex-col md:flex-row justify-between items-start max-w-screen-2xl mx-auto">
+<div class="mb-12 md:mb-0">
+<span class="text-3xl font-black text-lime-400 mb-8 block font-inter antialiased uppercase tracking-tighter">LocalPro</span>
+<p class="text-emerald-100/40 max-w-sm mb-6 font-inter text-sm uppercase tracking-widest">
+                    Empowering local commerce through radical transparency and energetic efficiency. 
+                </p>
+<div class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest">
+                    © 2024 LOCALPRO. ENERGETIC EFFICIENCY.
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-16">
+<div class="flex flex-col gap-4">
+<span class="text-lime-400 font-bold font-inter text-sm uppercase tracking-widest mb-4">Platform</span>
+<a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Browse Services</a>
+<a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Join as Pro</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-lime-400 font-bold font-inter text-sm uppercase tracking-widest mb-4">Trust</span>
+<a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Safety</a>
+<a class="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2 transition-colors" href="#">Support</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar from JSON (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 bg-emerald-950 z-50 border-t border-emerald-900">
+<a class="flex flex-col items-center justify-center bg-lime-400 text-emerald-950 rounded-full px-6 py-1.5 active:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[11px] font-bold uppercase tracking-widest">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-100/50 hover:bg-emerald-900/50 active:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[11px] font-bold uppercase tracking-widest">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-100/50 hover:bg-emerald-900/50 active:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[11px] font-bold uppercase tracking-widest">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-100/50 hover:bg-emerald-900/50 active:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[11px] font-bold uppercase tracking-widest">Account</span>
+</a>
+</nav>
+</body></html>
