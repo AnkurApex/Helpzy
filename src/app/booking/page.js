@@ -6,7 +6,9 @@ import Link from 'next/link';
 const INDIAN_CATEGORIES = ['Electrician','Plumber','Cleaner','AC Repair','Painter','Carpenter','Pest Control','Appliance Repair'];
 const TIME_SLOTS = ['08:00 AM','10:00 AM','12:00 PM','02:00 PM','04:00 PM','06:00 PM'];
 
-export default function BookingPage() {
+import { Suspense } from 'react';
+
+function BookingContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const providerId = searchParams.get('provider');
@@ -288,5 +290,13 @@ export default function BookingPage() {
         </section>
       </form>
     </div>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background pt-32 text-center font-bold">Loading booking journey...</div>}>
+      <BookingContent />
+    </Suspense>
   );
 }
