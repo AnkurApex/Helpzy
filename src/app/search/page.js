@@ -14,7 +14,9 @@ const CATEGORIES = [
   { slug: 'Appliance Repair', label: 'Appliance Repair', icon: 'home_repair_service' },
 ];
 
-export default function SearchPage() {
+import { Suspense } from 'react';
+
+function SearchContent() {
   const searchParams = useSearchParams();
   const [category, setCategory] = useState(searchParams.get('category') || 'Electrician');
   const [pincode, setPincode] = useState(searchParams.get('pincode') || '');
@@ -142,5 +144,13 @@ export default function SearchPage() {
         )}
       </section>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background pt-32 text-center font-bold">Loading expert pros...</div>}>
+      <SearchContent />
+    </Suspense>
   );
 }
