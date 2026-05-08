@@ -1,55 +1,47 @@
-import { openDb } from '@/lib/db';
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+import { query, run } from '@/lib/db';
 
-async function requireAdmin() {
+export async function GET() {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('helpzy_session')?.value;
-    if (!token) return null;
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const resp = await fetch(`${baseUrl}/api/auth`, { headers: { cookie: `helpzy_session=${token}` }, cache: 'no-store' });
-    if (!resp.ok) return null;
-    const data = await resp.json();
-    return data.user?.role === 'admin' ? data.user : null;
-  } catch { return null; }
+    const users = await query('SELECT * FROM users ORDER BY created_at DESC');
+    return NextResponse.json(users);
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to fetch users' }, { status: 500 });
+  }
 }
 
-// GET /api/admin/users — list all users
-export async function GET(request) {
-  const admin = await requireAdmin();
-  if (!admin) return NextResponse.json({ error: 'Admin access required.' }, { status: 403 });
-  const { searchParams } = new URL(request.url);
-  const role = searchParams.get('role');
-  const db = await openDb();
-  let queryStr = 'SELECT id, name, email, phone, role, city, pincode, is_blocked, created_at FROM users';
-  const params = [];
-  if (role) {
-    queryStr += ' WHERE role = $1';
-    params.push(role);
+export async function DELETE(req) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get('id');
+    await run('DELETE FROM users WHERE id = ?', [id]);
+    return NextResponse.json({ message: 'User deleted' });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to delete user' }, { status: 500 });
   }
-  queryStr += ' ORDER BY created_at DESC';
-  const users = await db.all(queryStr, params);
-  return NextResponse.json(users);
 }
 
-// PATCH /api/admin/users — block/unblock user
-export async function PATCH(request) {
-  const admin = await requireAdmin();
-  if (!admin) return NextResponse.json({ error: 'Admin access required.' }, { status: 403 });
-  const { user_id, action } = await request.json();
-  const db = await openDb();
-  if (action === 'block') {
-    await db.run('UPDATE users SET is_blocked = 1 WHERE id = $1', [user_id]);
-    return NextResponse.json({ success: true, message: 'User blocked.' });
+export async function PATCH(req) {
+  try {
+    const { user_id, action } = await req.json();
+    
+    if (action === 'block') {
+      await run('UPDATE users SET is_blocked = 1 WHERE id = ?', [user_id]);
+      return NextResponse.json({ message: 'User blocked' });
+    }
+    
+    if (action === 'unblock') {
+      await run('UPDATE users SET is_blocked = 0 WHERE id = ?', [user_id]);
+      return NextResponse.json({ message: 'User unblocked' });
+    }
+
+    if (action === 'delete') {
+      await run('DELETE FROM users WHERE id = ?', [user_id]);
+      return NextResponse.json({ message: 'User deleted' });
+    }
+
+    return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Action failed' }, { status: 500 });
   }
-  if (action === 'unblock') {
-    await db.run('UPDATE users SET is_blocked = 0 WHERE id = $1', [user_id]);
-    return NextResponse.json({ success: true, message: 'User unblocked.' });
-  }
-  if (action === 'delete') {
-    await db.run("DELETE FROM users WHERE id = $1 AND role != 'admin'", [user_id]);
-    return NextResponse.json({ success: true, message: 'User removed.' });
-  }
-  return NextResponse.json({ error: 'Invalid action.' }, { status: 400 });
 }

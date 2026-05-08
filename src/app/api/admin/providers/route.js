@@ -1,52 +1,56 @@
-import { openDb } from '@/lib/db';
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+import { query, run } from '@/lib/db';
 
-async function requireAdmin() {
+export async function GET() {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('helpzy_session')?.value;
-    if (!token) return null;
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const resp = await fetch(`${baseUrl}/api/auth`, { headers: { cookie: `helpzy_session=${token}` }, cache: 'no-store' });
-    if (!resp.ok) return null;
-    const data = await resp.json();
-    return data.user?.role === 'admin' ? data.user : null;
-  } catch { return null; }
+    const providers = await query('SELECT * FROM providers ORDER BY created_at DESC');
+    return NextResponse.json(providers);
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to fetch providers' }, { status: 500 });
+  }
 }
 
-export async function GET(request) {
-  const admin = await requireAdmin();
-  if (!admin) return NextResponse.json({ error: 'Admin access required.' }, { status: 403 });
-  const { searchParams } = new URL(request.url);
-  const status = searchParams.get('status');
-  const db = await openDb();
-  let queryStr = 'SELECT p.*, u.email, u.phone FROM providers p JOIN users u ON p.user_id = u.id';
-  const params = [];
-  if (status) {
-    queryStr += ' WHERE p.status = $1';
-    params.push(status);
+export async function POST(req) {
+  try {
+    const data = await req.json();
+    const { user_id, business_name, category, description, experience, base_price, city, pincode, image_url } = data;
+
+    const result = await run(`
+      INSERT INTO providers (user_id, business_name, category, description, experience, base_price, city, pincode, image_url)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `, [user_id, business_name, category, description, experience, base_price, city, pincode, image_url]);
+
+    // Update user role to provider
+    await run('UPDATE users SET role = "provider" WHERE id = ?', [user_id]);
+
+    return NextResponse.json({ message: 'Provider profile created', id: result.lastID });
+  } catch (error) {
+    console.error('Provider Creation Error:', error);
+    return NextResponse.json({ error: 'Failed to create provider' }, { status: 500 });
   }
-  queryStr += ' ORDER BY p.created_at DESC';
-  return NextResponse.json(await db.all(queryStr, params));
 }
 
-export async function PATCH(request) {
-  const admin = await requireAdmin();
-  if (!admin) return NextResponse.json({ error: 'Admin access required.' }, { status: 403 });
-  const { provider_id, action } = await request.json();
-  const db = await openDb();
-  if (action === 'verify') {
-    await db.run("UPDATE providers SET status = 'active', is_verified = 1 WHERE id = $1", [provider_id]);
-    return NextResponse.json({ success: true, message: 'Provider verified.' });
+export async function PATCH(req) {
+  try {
+    const { provider_id, action } = await req.json();
+    
+    if (action === 'verify') {
+      await run('UPDATE providers SET status = "active", is_verified = 1 WHERE id = ?', [provider_id]);
+      return NextResponse.json({ message: 'Provider verified' });
+    }
+    
+    if (action === 'reject') {
+      await run('UPDATE providers SET status = "rejected" WHERE id = ?', [provider_id]);
+      return NextResponse.json({ message: 'Provider rejected' });
+    }
+
+    if (action === 'remove') {
+      await run('DELETE FROM providers WHERE id = ?', [provider_id]);
+      return NextResponse.json({ message: 'Provider removed' });
+    }
+
+    return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Action failed' }, { status: 500 });
   }
-  if (action === 'reject') {
-    await db.run("UPDATE providers SET status = 'rejected' WHERE id = $1", [provider_id]);
-    return NextResponse.json({ success: true, message: 'Provider rejected.' });
-  }
-  if (action === 'remove') {
-    await db.run('DELETE FROM providers WHERE id = $1', [provider_id]);
-    return NextResponse.json({ success: true, message: 'Provider removed.' });
-  }
-  return NextResponse.json({ error: 'Invalid action.' }, { status: 400 });
 }
