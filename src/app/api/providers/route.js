@@ -8,7 +8,7 @@ export async function GET(req) {
     const pincode = searchParams.get('pincode');
     const city = searchParams.get('city');
 
-    let sql = 'SELECT * FROM providers WHERE 1=1';
+    let sql = "SELECT * FROM providers WHERE status = 'active'";
     let params = [];
 
     if (category) {

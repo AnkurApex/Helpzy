@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -24,7 +24,7 @@ function SearchContent() {
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchProviders = () => {
+  const fetchProviders = useCallback(() => {
     setLoading(true);
     const params = new URLSearchParams({ category });
     if (pincode) params.set('pincode', pincode);
@@ -33,9 +33,9 @@ function SearchContent() {
       .then(r => r.json())
       .then(data => { setProviders(Array.isArray(data) ? data : []); setLoading(false); })
       .catch(() => setLoading(false));
-  };
+  }, [category, city, pincode]);
 
-  useEffect(() => { fetchProviders(); }, [category]);
+  useEffect(() => { fetchProviders(); }, [fetchProviders]);
 
   return (
     <div className="min-h-screen">

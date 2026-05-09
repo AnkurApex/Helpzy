@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -13,14 +13,7 @@ export default function AdminDashboard() {
   const [actionLoading, setActionLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    fetch('/api/auth').then(r => r.json()).then(d => {
-      if (!d.user || d.user.role !== 'admin') { router.push('/auth'); return; }
-      loadAll();
-    });
-  }, []);
-
-  const loadAll = () => {
+  const loadAll = useCallback(() => {
     setLoading(true);
     Promise.all([
       fetch('/api/admin/overview').then(r => r.json()),
@@ -32,7 +25,14 @@ export default function AdminDashboard() {
       setAllProviders(Array.isArray(pr) ? pr : []);
       setLoading(false);
     }).catch(() => setLoading(false));
-  };
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/auth').then(r => r.json()).then(d => {
+      if (!d.user || d.user.role !== 'admin') { router.push('/auth'); return; }
+      loadAll();
+    });
+  }, [loadAll, router]);
 
   const doProviderAction = async (provider_id, action) => {
     setActionLoading(true);

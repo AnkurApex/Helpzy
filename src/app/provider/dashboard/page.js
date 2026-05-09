@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -22,17 +22,17 @@ export default function ProviderDashboard() {
   const [message, setMessage] = useState('');
   const [tab, setTab] = useState('requests');
 
+  const loadDashboard = useCallback(() => {
+    setLoading(true);
+    fetch('/api/provider/dashboard').then(r => r.json()).then(d => { setData(d); setLoading(false); }).catch(() => setLoading(false));
+  }, []);
+
   useEffect(() => {
     fetch('/api/auth').then(r => r.json()).then(d => {
       if (!d.user || d.user.role !== 'provider') { router.push('/auth'); return; }
       loadDashboard();
     });
-  }, []);
-
-  const loadDashboard = () => {
-    setLoading(true);
-    fetch('/api/provider/dashboard').then(r => r.json()).then(d => { setData(d); setLoading(false); }).catch(() => setLoading(false));
-  };
+  }, [loadDashboard, router]);
 
   const doAction = async (bookingId, action, extra = {}) => {
     setActionLoading(true);

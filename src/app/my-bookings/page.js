@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -27,20 +27,20 @@ export default function MyBookingsPage() {
   const [actionLoading, setActionLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    fetch('/api/auth').then(r => r.json()).then(d => {
-      if (!d.user) { router.push('/auth'); return; }
-      loadBookings();
-    });
-  }, []);
-
-  const loadBookings = () => {
+  const loadBookings = useCallback(() => {
     setLoading(true);
     fetch('/api/bookings').then(r => r.json()).then(data => {
       setBookings(Array.isArray(data) ? data : []);
       setLoading(false);
     }).catch(() => setLoading(false));
-  };
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/auth').then(r => r.json()).then(d => {
+      if (!d.user) { router.push('/auth'); return; }
+      loadBookings();
+    });
+  }, [loadBookings, router]);
 
   const cancelBooking = async (id) => {
     if (!confirm('Cancel this booking?')) return;

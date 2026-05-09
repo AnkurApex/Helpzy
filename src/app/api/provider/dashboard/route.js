@@ -1,26 +1,14 @@
 import { openDb } from '@/lib/db';
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
-
-async function requireProvider() {
-  try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('helpzy_session')?.value;
-    if (!token) return null;
-    const resp = await fetch(`http://localhost:3000/api/auth`, { headers: { cookie: `helpzy_session=${token}` }, cache: 'no-store' });
-    if (!resp.ok) return null;
-    const data = await resp.json();
-    return data.user?.role === 'provider' ? data.user : null;
-  } catch { return null; }
-}
+import { requireRole } from '@/lib/auth';
 
 export async function GET() {
   try {
-    const user = await requireProvider();
-    if (!user) return NextResponse.json({ error: 'Provider access required.' }, { status: 403 });
+    const session = await requireRole('provider');
+    if (session.error) return NextResponse.json({ error: session.error }, { status: session.status });
 
     const db = await openDb();
-    const provider = await db.get('SELECT * FROM providers WHERE user_id = ?', [user.id]);
+    const provider = await db.get('SELECT * FROM providers WHERE user_id = ?', [session.user.id]);
     if (!provider) return NextResponse.json({ error: 'Provider profile not found.' }, { status: 404 });
 
     const [bookings, earnings, reviews] = await Promise.all([
