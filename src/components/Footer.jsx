@@ -21,17 +21,17 @@ export default function Footer() {
           </div>
           <div className="flex flex-col gap-4">
             <h5 className="text-white font-bold uppercase tracking-widest mb-2">Support</h5>
-            <a className="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2" href="#">Safety</a>
-            <a className="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2" href="#">Help Center</a>
-            <Link href="/auth" className="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2">Join as Pro</Link>
+            <Link href="/search?category=Electrician" className="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2">Find a Pro</Link>
+            <Link href="/my-bookings" className="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2">My Bookings</Link>
+            <Link href="/auth?role=provider" className="text-emerald-100/40 font-inter text-sm uppercase tracking-widest hover:text-white underline decoration-lime-400 decoration-2">Join as Pro</Link>
           </div>
         </div>
       </div>
       <div className="w-full px-10 pb-12 max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-t border-emerald-900/50 pt-8">
         <span className="text-emerald-100/20 font-inter text-[11px] uppercase tracking-widest">© 2026 HELPZY. YOUR HOME. OUR MISSION.</span>
         <div className="flex gap-8">
-          <a className="text-emerald-100/20 text-[11px] uppercase tracking-widest hover:text-lime-400" href="#">Privacy Policy</a>
-          <a className="text-emerald-100/20 text-[11px] uppercase tracking-widest hover:text-lime-400" href="#">Terms of Service</a>
+          <Link href="/auth" className="text-emerald-100/20 text-[11px] uppercase tracking-widest hover:text-lime-400">Sign In</Link>
+          <Link href="/search?category=Electrician" className="text-emerald-100/20 text-[11px] uppercase tracking-widest hover:text-lime-400">Browse Pros</Link>
         </div>
       </div>
     </footer>

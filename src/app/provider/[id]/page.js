@@ -17,9 +17,9 @@ async function getProvider(id) {
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const provider = await getProvider(id);
-  if (!provider) return { title: 'Provider Not Found | LocalPro' };
+  if (!provider) return { title: 'Provider Not Found | Helpzy' };
   return {
-    title: `${provider.business_name} | LocalPro`,
+    title: `${provider.business_name} | Helpzy`,
     description: provider.description,
   };
 }

@@ -21,6 +21,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '/', label: 'Home' },
+    { href: '/search?category=Electrician', label: 'Search' },
     { href: '/services/electrician', label: 'Services' },
   ];
 
@@ -89,6 +90,12 @@ export default function Navbar() {
           {user ? (
             <>
               <Link href="/my-bookings" onClick={() => setMobileOpen(false)} className="block text-lime-400 font-bold uppercase tracking-widest text-sm py-2">My Bookings</Link>
+              {user.role === 'provider' && (
+                <Link href="/provider/dashboard" onClick={() => setMobileOpen(false)} className="block text-emerald-100/60 uppercase tracking-widest text-sm py-2">Dashboard</Link>
+              )}
+              {user.role === 'admin' && (
+                <Link href="/admin" onClick={() => setMobileOpen(false)} className="block text-emerald-100/60 uppercase tracking-widest text-sm py-2">Admin</Link>
+              )}
               <Link href="/profile" onClick={() => setMobileOpen(false)} className="block text-emerald-100/60 uppercase tracking-widest text-sm py-2">Profile</Link>
               <button onClick={handleLogout} className="block text-error font-bold uppercase tracking-widest text-sm py-2">Sign Out</button>
             </>

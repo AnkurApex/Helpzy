@@ -1,7 +1,17 @@
 import { NextResponse } from 'next/server';
 import { openDb, hashPassword } from '@/lib/db';
-import { randomBytes, randomInt } from 'crypto';
+import { randomBytes, randomInt, timingSafeEqual } from 'crypto';
 import { setSessionCookie } from '@/lib/auth';
+import { EMAIL_PATTERN } from '@/lib/constants';
+import { jsonError } from '@/lib/http';
+import { getClientKey, rateLimit } from '@/lib/rateLimit';
+
+function otpsMatch(stored, received) {
+  const a = Buffer.from(String(stored));
+  const b = Buffer.from(String(received || ''));
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(a, b);
+}
 
 const otpStore = new Map();
 
@@ -33,7 +43,12 @@ export async function POST(request) {
     const { email, action, name, phone, role, city, pincode, category } = body;
     const normalizedEmail = normalizeEmail(email);
 
-    if (!normalizedEmail) return NextResponse.json({ error: 'Email is required.' }, { status: 400 });
+    const limited = rateLimit(`otp:${getClientKey(request)}:${normalizedEmail || 'none'}`, { limit: 8, windowMs: 60_000 });
+    if (!limited.ok) return jsonError('Too many OTP requests. Try again shortly.', 429);
+
+    if (!normalizedEmail || !EMAIL_PATTERN.test(normalizedEmail)) {
+      return jsonError('A valid email is required.');
+    }
 
     const db = await openDb();
 
@@ -92,6 +107,9 @@ export async function PATCH(request) {
     const { email, otp, password } = body;
     const normalizedEmail = normalizeEmail(email);
 
+    const limited = rateLimit(`otp-verify:${getClientKey(request)}:${normalizedEmail || 'none'}`, { limit: 10, windowMs: 60_000 });
+    if (!limited.ok) return jsonError('Too many attempts. Try again shortly.', 429);
+
     if (!normalizedEmail || !otp) return NextResponse.json({ error: 'Email and OTP are required.' }, { status: 400 });
 
     const stored = otpStore.get(normalizedEmail);
@@ -100,7 +118,9 @@ export async function PATCH(request) {
       otpStore.delete(normalizedEmail);
       return NextResponse.json({ error: 'OTP has expired. Please request a new one.' }, { status: 400 });
     }
-    if (stored.otp !== otp.trim()) return NextResponse.json({ error: 'Incorrect OTP. Please try again.' }, { status: 400 });
+    if (!otpsMatch(stored.otp, String(otp).trim())) {
+      return NextResponse.json({ error: 'Incorrect OTP. Please try again.' }, { status: 400 });
+    }
 
     otpStore.delete(normalizedEmail);
     const db = await openDb();

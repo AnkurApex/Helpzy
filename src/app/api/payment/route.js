@@ -91,6 +91,9 @@ export async function PATCH(request) {
     }
 
     const nextStatus = status || 'paid';
+    if (!['paid', 'failed', 'pending'].includes(nextStatus)) {
+      return NextResponse.json({ error: 'Invalid payment status.' }, { status: 400 });
+    }
     await db.run('UPDATE payments SET status = ? WHERE transaction_ref = ?', [nextStatus, transaction_ref]);
     if (nextStatus === 'paid') {
       await db.run("UPDATE bookings SET payment_status = 'paid' WHERE id = ?", [payment.booking_id]);

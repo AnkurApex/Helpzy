@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { get, query, run } from '@/lib/db';
 import { requireUser } from '@/lib/auth';
 import { randomInt } from 'crypto';
+import { PAYMENT_METHODS } from '@/lib/constants';
+import { jsonError, sessionError } from '@/lib/http';
 
 function bookingSelect(whereClause) {
   return `
@@ -38,7 +40,7 @@ export async function GET() {
 export async function POST(req) {
   try {
     const session = await requireUser();
-    if (session.error) return NextResponse.json({ error: session.error }, { status: session.status });
+    if (session.error) return sessionError(session);
 
     const data = await req.json();
     const {
@@ -54,7 +56,14 @@ export async function POST(req) {
     } = data;
 
     if (!service_category || !address || !pincode || !booking_date || !booking_time) {
-      return NextResponse.json({ error: 'Service, address, pincode, date, and time are required' }, { status: 400 });
+      return jsonError('Service, address, pincode, date, and time are required');
+    }
+    if (!/^\d{6}$/.test(String(pincode))) {
+      return jsonError('Pincode must be 6 digits');
+    }
+    const method = payment_method || 'cash';
+    if (!PAYMENT_METHODS.includes(method)) {
+      return jsonError('Invalid payment method');
     }
 
     const provider = provider_id ? await get('SELECT id, base_price FROM providers WHERE id = ?', [provider_id]) : null;
@@ -77,7 +86,7 @@ export async function POST(req) {
       pincode,
       booking_date,
       booking_time,
-      payment_method || 'cash',
+      method,
       totalAmount,
       otp,
     ]);

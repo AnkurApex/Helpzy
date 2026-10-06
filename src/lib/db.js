@@ -158,11 +158,34 @@ export async function openDb() {
     (2, 'Rahul Customer', 'rahul@example.com', 'customer123', 'customer'),
     (3, 'Ramesh Provider', 'ramesh@provider.com', 'provider123', 'provider');
 
-    INSERT OR IGNORE INTO providers (id, user_id, business_name, slug, category, city, pincode, rating, review_count, base_price, status, is_verified) VALUES
-    (1, 3, 'Ramesh Electric Solutions', 'ramesh-electric-solutions-1', 'Electrician', 'Mumbai', '400001', 4.8, 12, 499, 'active', 1);
+    INSERT OR IGNORE INTO users (id, name, email, password, phone, role, city, pincode) VALUES
+    (4, 'Sita Plumbing Works', 'sita@provider.com', 'provider123', '9876500002', 'provider', 'Mumbai', '400002'),
+    (5, 'Arjun Clean Homes', 'arjun@provider.com', 'provider123', '9876500003', 'provider', 'Pune', '411001'),
+    (6, 'Meera Cool Air', 'meera@provider.com', 'provider123', '9876500004', 'provider', 'Mumbai', '400050'),
+    (7, 'Karan Paint Studio', 'karan@provider.com', 'provider123', '9876500005', 'provider', 'Thane', '400601');
+
+    INSERT OR IGNORE INTO providers (id, user_id, business_name, slug, category, description, city, pincode, rating, review_count, base_price, status, is_verified) VALUES
+    (1, 3, 'Ramesh Electric Solutions', 'ramesh-electric-solutions-1', 'Electrician', 'Licensed wiring, fan fitting, and emergency electrical repair.', 'Mumbai', '400001', 4.8, 12, 499, 'active', 1),
+    (2, 4, 'Sita Plumbing Works', 'sita-plumbing-works-2', 'Plumber', 'Leak repair, bathroom fitting, and 24x7 plumbing support.', 'Mumbai', '400002', 4.6, 9, 399, 'active', 1),
+    (3, 5, 'Arjun Clean Homes', 'arjun-clean-homes-3', 'Cleaner', 'Deep cleaning and regular home housekeeping with verified staff.', 'Pune', '411001', 4.7, 18, 799, 'active', 1),
+    (4, 6, 'Meera Cool Air', 'meera-cool-air-4', 'AC Repair', 'Split and window AC service, gas refill, and installation.', 'Mumbai', '400050', 4.9, 21, 599, 'active', 1),
+    (5, 7, 'Karan Paint Studio', 'karan-paint-studio-5', 'Painter', 'Interior and exterior painting with neat, on-time finishing.', 'Thane', '400601', 4.5, 7, 1499, 'active', 1);
+
+    CREATE INDEX IF NOT EXISTS idx_providers_status_category ON providers (status, category);
+    CREATE INDEX IF NOT EXISTS idx_providers_user_id ON providers (user_id);
+    CREATE INDEX IF NOT EXISTS idx_bookings_customer_id ON bookings (customer_id);
+    CREATE INDEX IF NOT EXISTS idx_bookings_provider_id ON bookings (provider_id);
   `);
 
+  await hashPlaintextDemoPasswords(db);
   return db;
+}
+
+async function hashPlaintextDemoPasswords(database) {
+  const rows = await database.all("SELECT id, password FROM users WHERE password IS NOT NULL AND password NOT LIKE 'scrypt:%'");
+  for (const row of rows) {
+    await database.run('UPDATE users SET password = ? WHERE id = ?', [hashPassword(row.password), row.id]);
+  }
 }
 
 // Helper to run queries

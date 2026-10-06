@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Home({ params }) {
+export default function Home() {
   return (
     <div className="flex-grow">
       
@@ -65,9 +65,9 @@ export default function Home({ params }) {
 <span className="text-primary font-label-bold uppercase tracking-widest block mb-4">Elite Services</span>
 <h2 className="font-headline-lg text-headline-lg">POPULAR <span className="text-secondary">CATEGORIES</span></h2>
 </div>
-<a className="text-primary font-label-bold uppercase underline decoration-2 decoration-lime-400 flex items-center gap-2" href="#">
+<Link href="/search?category=Electrician" className="text-primary font-label-bold uppercase underline decoration-2 decoration-lime-400 flex items-center gap-2">
                         View All Services <span className="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-</a>
+</Link>
 </div>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
 
@@ -187,8 +187,8 @@ export default function Home({ params }) {
 <div className="container-max mx-auto px-6 relative z-10 text-center">
 <h2 className="font-display-xl text-display-xl text-emerald-950 mb-12 uppercase">READY TO BUILD YOUR <span className="bg-emerald-950 text-lime-400 px-4">MAINTENANCE TEAM?</span></h2>
 <div className="flex flex-col sm:flex-row justify-center gap-6">
-<button className="bg-emerald-950 text-lime-400 font-label-bold text-lg px-12 py-6 rounded-full uppercase tracking-widest hover:scale-105 transition-transform">Get Started Now</button>
-<button className="border-4 border-emerald-950 text-emerald-950 font-label-bold text-lg px-12 py-6 rounded-full uppercase tracking-widest hover:bg-emerald-950 hover:text-white transition-colors">Become a Pro</button>
+<Link href="/auth" className="bg-emerald-950 text-lime-400 font-label-bold text-lg px-12 py-6 rounded-full uppercase tracking-widest hover:scale-105 transition-transform text-center">Get Started Now</Link>
+<Link href="/auth?role=provider" className="border-4 border-emerald-950 text-emerald-950 font-label-bold text-lg px-12 py-6 rounded-full uppercase tracking-widest hover:bg-emerald-950 hover:text-white transition-colors text-center">Become a Pro</Link>
 </div>
 </div>
 </section>

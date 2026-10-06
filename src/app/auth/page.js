@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -107,6 +107,14 @@ export default function AuthPage() {
     const t = setTimeout(() => setResendTimer(r => r - 1), 1000);
     return () => clearTimeout(t);
   }, [resendTimer]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('role') === 'provider') {
+      setMode('signup');
+      setRole('provider');
+    }
+  }, []);
 
   const go = (nextStep) => {
     setDir(nextStep > step ? 'forward' : 'backward');

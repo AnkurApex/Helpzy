@@ -9,6 +9,15 @@ Next.js app for a local services marketplace (customers + service providers) wit
 - **Styling**: Tailwind CSS (via PostCSS)
 - **Database**: SQLite by default (optionally via `DATABASE_URL`)
 
+## Project docs
+
+Agent and contributor context lives in `docs/` (see `AGENTS.md`):
+
+- `docs/SECURITY.md`
+- `docs/CODE_STYLE.md`
+- `docs/DATABASE.md`
+- `docs/API.md`
+
 ## Getting started (local)
 
 ### Prerequisites

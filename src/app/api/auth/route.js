@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { run, get, hashPassword, verifyPassword } from '@/lib/db';
 import { clearSessionCookie, getCurrentUser, setSessionCookie } from '@/lib/auth';
+import { EMAIL_PATTERN } from '@/lib/constants';
+import { jsonError } from '@/lib/http';
+import { getClientKey, rateLimit } from '@/lib/rateLimit';
 
 export async function GET() {
   try {
@@ -13,12 +16,18 @@ export async function GET() {
 
 export async function POST(req) {
   try {
+    const limited = rateLimit(`auth:${getClientKey(req)}`, { limit: 20, windowMs: 60_000 });
+    if (!limited.ok) return jsonError('Too many requests. Try again shortly.', 429);
+
     const { action, email, password, name, phone, role } = await req.json();
 
     if (action === 'signup') {
       const normalizedEmail = email?.toLowerCase().trim();
-      if (!normalizedEmail || !password || !name) {
-        return NextResponse.json({ error: 'Name, email, and password are required' }, { status: 400 });
+      if (!normalizedEmail || !EMAIL_PATTERN.test(normalizedEmail) || !password || !name) {
+        return jsonError('Name, a valid email, and password are required');
+      }
+      if (password.length < 6) {
+        return jsonError('Password must be at least 6 characters.');
       }
 
       const existingUser = await get('SELECT id FROM users WHERE email = ?', [normalizedEmail]);
